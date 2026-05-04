@@ -21,7 +21,7 @@ export const trips = [
     accommodationType: "Hotel",
     accomCost: "$0 (expensed)", flights: "$0 (expensed)", groundTransport: "$0 (expensed)",
     foodActivEst: "—", totalEst: "$0", expensed: "Precise",
-    outOfPocket: "$0", status: "BOOKED",
+    outOfPocket: "$0", status: "COMPLETE",
     notes: "Chris business trip to Precise. Fully expensed. Gabbi home with Cora.",
   },
   {
