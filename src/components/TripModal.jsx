@@ -1,18 +1,56 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import StatusBadge from './StatusBadge';
 import { formatDateRange } from '../utils/dateUtils';
+
+const ChevronIcon = ({ open }) => (
+  <svg
+    className={`h-4 w-4 text-slate-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+    fill="none" viewBox="0 0 24 24" stroke="currentColor"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+  </svg>
+);
+
+const AccordionSection = ({ icon, title, open, onToggle, children }) => (
+  <div className="border border-slate-100 rounded-xl overflow-hidden">
+    <button
+      onClick={onToggle}
+      className="w-full flex items-center justify-between px-4 py-3.5 bg-slate-50 hover:bg-slate-100 transition-colors text-left"
+    >
+      <div className="flex items-center gap-2.5">
+        <span className="text-base">{icon}</span>
+        <span className="font-semibold text-sm text-slate-700">{title}</span>
+      </div>
+      <ChevronIcon open={open} />
+    </button>
+    {open && (
+      <div className="px-4 py-4 bg-white">
+        {children}
+      </div>
+    )}
+  </div>
+);
 
 const Field = ({ label, value }) => {
   if (!value || value === '—' || value === '') return null;
   return (
     <div>
       <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-0.5">{label}</div>
-      <div className="text-slate-700 text-sm">{value}</div>
+      <div className="text-slate-700 text-sm leading-snug">{value}</div>
     </div>
   );
 };
 
 export default function TripModal({ trip, onClose }) {
+  const [open, setOpen] = useState({ accom: false, flights: false, budget: false, notes: false });
+
+  const toggle = (key) => setOpen(prev => ({ ...prev, [key]: !prev[key] }));
+
+  // Reset accordion when trip changes
+  useEffect(() => {
+    setOpen({ accom: false, flights: false, budget: false, notes: false });
+  }, [trip]);
+
   useEffect(() => {
     if (trip) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = '';
@@ -26,6 +64,9 @@ export default function TripModal({ trip, onClose }) {
   }, [onClose]);
 
   if (!trip) return null;
+
+  const hasFlights = trip.flights && trip.flights !== '—' && trip.flights !== '';
+  const hasTransport = trip.groundTransport && trip.groundTransport !== '—' && trip.groundTransport !== '';
 
   return (
     <div
@@ -64,45 +105,72 @@ export default function TripModal({ trip, onClose }) {
           </div>
         </div>
 
-        {/* Body */}
-        <div className="px-6 py-5 space-y-6">
+        {/* Quick-glance strip — always visible */}
+        <div className="px-6 py-4 grid grid-cols-3 gap-4 border-b border-slate-100 bg-white">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-0.5">Dates</div>
+            <div className="text-slate-700 text-sm font-medium">{formatDateRange(trip.startDate, trip.endDate)}</div>
+          </div>
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-0.5">Nights</div>
+            <div className="text-slate-700 text-sm font-medium">{trip.nights}</div>
+          </div>
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-0.5">Type</div>
+            <div className="text-slate-700 text-sm font-medium">{trip.tripType}</div>
+          </div>
+        </div>
 
-          {/* Overview */}
-          <section>
-            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Overview</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              <Field label="Dates" value={formatDateRange(trip.startDate, trip.endDate)} />
-              <Field label="Nights" value={trip.nights} />
-              <Field label="Trip Type" value={trip.tripType} />
-              <Field label="Accommodation" value={trip.accommodationName} />
-              {trip.accommodationAddress && <Field label="Address" value={trip.accommodationAddress} />}
-              <Field label="Accommodation Type" value={trip.accommodationType} />
+        {/* Accordion sections */}
+        <div className="px-6 py-5 space-y-3">
+
+          {/* Accommodation */}
+          <AccordionSection icon="🏨" title="Accommodation" open={open.accom} onToggle={() => toggle('accom')}>
+            <div className="grid grid-cols-2 gap-4">
+              <Field label="Name" value={trip.accommodationName} />
+              <Field label="Type" value={trip.accommodationType} />
+              {trip.accommodationAddress && (
+                <div className="col-span-2">
+                  <Field label="Address" value={trip.accommodationAddress} />
+                </div>
+              )}
+              <Field label="Cost" value={trip.accomCost} />
             </div>
-          </section>
+          </AccordionSection>
 
-          {/* Costs */}
-          <section>
-            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Costs</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {/* Flights & Transport */}
+          {(hasFlights || hasTransport) && (
+            <AccordionSection icon="✈️" title="Flights & Transport" open={open.flights} onToggle={() => toggle('flights')}>
+              <div className="grid grid-cols-2 gap-4">
+                <Field label="Flights" value={trip.flights} />
+                <Field label="Ground Transport" value={trip.groundTransport} />
+              </div>
+            </AccordionSection>
+          )}
+
+          {/* Budget */}
+          <AccordionSection icon="💰" title="Budget" open={open.budget} onToggle={() => toggle('budget')}>
+            <div className="grid grid-cols-2 gap-4 mb-4">
               <Field label="Accommodation" value={trip.accomCost} />
               <Field label="Flights" value={trip.flights} />
               <Field label="Ground Transport" value={trip.groundTransport} />
               <Field label="Food & Activities" value={trip.foodActivEst} />
               <Field label="Total Estimate" value={trip.totalEst} />
-              <Field label="Expensed" value={trip.expensed !== '$0' ? trip.expensed : null} />
+              {trip.expensed && trip.expensed !== '$0' && (
+                <Field label="Expensed Via" value={trip.expensed} />
+              )}
             </div>
-            <div className="mt-4 p-4 rounded-xl bg-navy/5 border border-navy/10">
+            <div className="p-4 rounded-xl bg-navy/5 border border-navy/10">
               <div className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-0.5">Out of Pocket</div>
               <div className="text-2xl font-display font-bold text-navy">{trip.outOfPocket}</div>
             </div>
-          </section>
+          </AccordionSection>
 
-          {/* Notes */}
+          {/* Notes & Activities */}
           {trip.notes && (
-            <section>
-              <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Notes</h3>
-              <p className="text-slate-600 text-sm leading-relaxed bg-slate-50 rounded-xl p-4">{trip.notes}</p>
-            </section>
+            <AccordionSection icon="📝" title="Notes & Activities" open={open.notes} onToggle={() => toggle('notes')}>
+              <p className="text-slate-600 text-sm leading-relaxed">{trip.notes}</p>
+            </AccordionSection>
           )}
 
         </div>
