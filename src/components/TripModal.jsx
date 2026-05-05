@@ -10,6 +10,16 @@ const ACTIVITY_ICONS = {
   activity: '🎯',
 };
 
+const TIME_COLORS = {
+  'Early AM': 'text-violet-400',
+  'Morning':  'text-amber-500',
+  'Midday':   'text-orange-400',
+  'Afternoon':'text-sky-500',
+  'Evening':  'text-indigo-400',
+  'Optional': 'text-slate-400',
+  'TBD':      'text-slate-400',
+};
+
 const ChevronIcon = ({ open }) => (
   <svg
     className={`h-4 w-4 text-slate-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
@@ -59,13 +69,47 @@ const ActivityTile = ({ activity }) => (
   </div>
 );
 
+const DayCard = ({ day, index }) => {
+  const dotColors = [
+    'bg-gold', 'bg-navy', 'bg-sage', 'bg-sky-500', 'bg-rose-400',
+    'bg-violet-400', 'bg-amber-500', 'bg-teal-500', 'bg-indigo-400',
+  ];
+  const dotColor = dotColors[index % dotColors.length];
+
+  return (
+    <div className="rounded-xl border border-slate-100 overflow-hidden">
+      {/* Day header */}
+      <div className="flex items-center gap-3 px-4 py-3 bg-slate-50">
+        <div className={`w-7 h-7 rounded-full ${dotColor} text-white text-xs font-bold flex items-center justify-center flex-shrink-0`}>
+          {day.day}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="font-semibold text-sm text-slate-800">{day.title}</div>
+          <div className="text-xs text-slate-400 mt-0.5">{day.location}</div>
+        </div>
+      </div>
+      {/* Day items */}
+      <div className="px-4 py-3 space-y-2 bg-white">
+        {day.items.map((item, i) => (
+          <div key={i} className="flex gap-3 items-start">
+            <span className={`text-xs font-semibold w-16 flex-shrink-0 pt-0.5 uppercase tracking-wide ${TIME_COLORS[item.time] || 'text-slate-400'}`}>
+              {item.time}
+            </span>
+            <span className="text-sm text-slate-600 leading-snug">{item.desc}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function TripModal({ trip, onClose }) {
-  const [open, setOpen] = useState({ accom: false, flights: false, budget: false, activities: false });
+  const [open, setOpen] = useState({ accom: false, flights: false, budget: false, activities: false, itinerary: false });
 
   const toggle = (key) => setOpen(prev => ({ ...prev, [key]: !prev[key] }));
 
   useEffect(() => {
-    setOpen({ accom: false, flights: false, budget: false, activities: false });
+    setOpen({ accom: false, flights: false, budget: false, activities: false, itinerary: false });
   }, [trip]);
 
   useEffect(() => {
@@ -86,6 +130,7 @@ export default function TripModal({ trip, onClose }) {
   const hasTransport = trip.groundTransport && trip.groundTransport !== '—' && trip.groundTransport !== '';
   const hasFlightSection = hasFlights || hasTransport || !!trip.flightDetails;
   const hasActivities = trip.activities?.length > 0;
+  const hasItinerary = trip.itinerary?.length > 0;
   const hasNotes = !!trip.notes;
 
   return (
@@ -93,10 +138,8 @@ export default function TripModal({ trip, onClose }) {
       className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
       onClick={onClose}
     >
-      {/* Backdrop */}
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
 
-      {/* Panel */}
       <div
         className="relative bg-white w-full sm:max-w-2xl sm:mx-4 sm:rounded-2xl rounded-t-3xl max-h-[90vh] overflow-y-auto z-10 shadow-2xl"
         onClick={e => e.stopPropagation()}
@@ -165,7 +208,7 @@ export default function TripModal({ trip, onClose }) {
                 <p className="text-slate-600 text-sm leading-relaxed whitespace-pre-line mb-4">{trip.flightDetails}</p>
               )}
               {(hasFlights || hasTransport) && (
-                <div className="grid grid-cols-2 gap-4 pt-1 border-t border-slate-100 mt-1">
+                <div className={`grid grid-cols-2 gap-4 ${trip.flightDetails ? 'pt-3 border-t border-slate-100' : ''}`}>
                   <Field label="Flight Cost" value={trip.flights} />
                   <Field label="Ground Transport" value={trip.groundTransport} />
                 </div>
@@ -191,7 +234,18 @@ export default function TripModal({ trip, onClose }) {
             </div>
           </AccordionSection>
 
-          {/* Activities & Notes */}
+          {/* Day-by-Day Itinerary (for bigger trips like Japan, Austria, BVI) */}
+          {hasItinerary && (
+            <AccordionSection icon="📅" title="Day-by-Day Itinerary" open={open.itinerary} onToggle={() => toggle('itinerary')}>
+              <div className="space-y-3">
+                {trip.itinerary.map((day, i) => (
+                  <DayCard key={day.day} day={day} index={i} />
+                ))}
+              </div>
+            </AccordionSection>
+          )}
+
+          {/* Activities & Notes (for shorter/simpler trips) */}
           {(hasActivities || hasNotes) && (
             <AccordionSection icon="🗺️" title="Activities & Notes" open={open.activities} onToggle={() => toggle('activities')}>
               {hasActivities && (
