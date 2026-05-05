@@ -2,6 +2,14 @@ import { useEffect, useState } from 'react';
 import StatusBadge from './StatusBadge';
 import { formatDateRange } from '../utils/dateUtils';
 
+const ACTIVITY_ICONS = {
+  restaurant: '🍽️',
+  brewery: '🍺',
+  beach: '🏖️',
+  park: '🌿',
+  activity: '🎯',
+};
+
 const ChevronIcon = ({ open }) => (
   <svg
     className={`h-4 w-4 text-slate-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
@@ -41,14 +49,23 @@ const Field = ({ label, value }) => {
   );
 };
 
+const ActivityTile = ({ activity }) => (
+  <div className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+    <span className="text-xl leading-none mt-0.5">{ACTIVITY_ICONS[activity.type] || '📍'}</span>
+    <div>
+      <div className="font-semibold text-sm text-slate-700">{activity.name}</div>
+      {activity.desc && <div className="text-xs text-slate-500 mt-0.5 leading-snug">{activity.desc}</div>}
+    </div>
+  </div>
+);
+
 export default function TripModal({ trip, onClose }) {
-  const [open, setOpen] = useState({ accom: false, flights: false, budget: false, notes: false });
+  const [open, setOpen] = useState({ accom: false, flights: false, budget: false, activities: false });
 
   const toggle = (key) => setOpen(prev => ({ ...prev, [key]: !prev[key] }));
 
-  // Reset accordion when trip changes
   useEffect(() => {
-    setOpen({ accom: false, flights: false, budget: false, notes: false });
+    setOpen({ accom: false, flights: false, budget: false, activities: false });
   }, [trip]);
 
   useEffect(() => {
@@ -67,6 +84,9 @@ export default function TripModal({ trip, onClose }) {
 
   const hasFlights = trip.flights && trip.flights !== '—' && trip.flights !== '';
   const hasTransport = trip.groundTransport && trip.groundTransport !== '—' && trip.groundTransport !== '';
+  const hasFlightSection = hasFlights || hasTransport || !!trip.flightDetails;
+  const hasActivities = trip.activities?.length > 0;
+  const hasNotes = !!trip.notes;
 
   return (
     <div
@@ -105,7 +125,7 @@ export default function TripModal({ trip, onClose }) {
           </div>
         </div>
 
-        {/* Quick-glance strip — always visible */}
+        {/* Quick-glance strip */}
         <div className="px-6 py-4 grid grid-cols-3 gap-4 border-b border-slate-100 bg-white">
           <div>
             <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-0.5">Dates</div>
@@ -139,12 +159,17 @@ export default function TripModal({ trip, onClose }) {
           </AccordionSection>
 
           {/* Flights & Transport */}
-          {(hasFlights || hasTransport) && (
+          {hasFlightSection && (
             <AccordionSection icon="✈️" title="Flights & Transport" open={open.flights} onToggle={() => toggle('flights')}>
-              <div className="grid grid-cols-2 gap-4">
-                <Field label="Flights" value={trip.flights} />
-                <Field label="Ground Transport" value={trip.groundTransport} />
-              </div>
+              {trip.flightDetails && (
+                <p className="text-slate-600 text-sm leading-relaxed whitespace-pre-line mb-4">{trip.flightDetails}</p>
+              )}
+              {(hasFlights || hasTransport) && (
+                <div className="grid grid-cols-2 gap-4 pt-1 border-t border-slate-100 mt-1">
+                  <Field label="Flight Cost" value={trip.flights} />
+                  <Field label="Ground Transport" value={trip.groundTransport} />
+                </div>
+              )}
             </AccordionSection>
           )}
 
@@ -166,10 +191,21 @@ export default function TripModal({ trip, onClose }) {
             </div>
           </AccordionSection>
 
-          {/* Notes & Activities */}
-          {trip.notes && (
-            <AccordionSection icon="📝" title="Notes & Activities" open={open.notes} onToggle={() => toggle('notes')}>
-              <p className="text-slate-600 text-sm leading-relaxed">{trip.notes}</p>
+          {/* Activities & Notes */}
+          {(hasActivities || hasNotes) && (
+            <AccordionSection icon="🗺️" title="Activities & Notes" open={open.activities} onToggle={() => toggle('activities')}>
+              {hasActivities && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+                  {trip.activities.map((a, i) => (
+                    <ActivityTile key={i} activity={a} />
+                  ))}
+                </div>
+              )}
+              {hasNotes && (
+                <p className={`text-slate-600 text-sm leading-relaxed ${hasActivities ? 'pt-3 border-t border-slate-100' : ''}`}>
+                  {trip.notes}
+                </p>
+              )}
             </AccordionSection>
           )}
 
