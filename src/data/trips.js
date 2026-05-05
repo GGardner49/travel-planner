@@ -34,7 +34,7 @@ export const trips = [
     accomCost: "$400", flights: "$0 (business)", groundTransport: "$0",
     foodActivEst: "TBD", totalEst: "$400", expensed: "$0",
     outOfPocket: "$400", status: "BOOKED",
-    notes: "Personal leg of May trip. Flights paid by business. Airbnb at 2602 Bay Blvd (bay side — ~5 min walk to beach). Walkable: Kolb Park (bay side, picnic + restrooms), beach access points. Short drive: Crabby Bill's (casual seafood + live music, Gulf Blvd), Guppy's on the Beach (waterfront sunset views), Keegan's Seafood Grille (local neighborhood fave). Breweries: 3 Daughters Brewing or Clearwater Brewing (~15 min). Baby activity: Clearwater Marine Aquarium (~20 min, free under 3).",
+    notes: "Personal leg of May trip. Outbound: TYS→ATL→TPA May 16, depart 8:35am arrive 12:40pm (DL5279 + DL1099, Delta Comfort). Flights paid by business. Airbnb at 2602 Bay Blvd (bay side — ~5 min walk to beach). Walkable: Kolb Park (bay side, picnic + restrooms), beach access points. Short drive: Crabby Bill's (casual seafood + live music, Gulf Blvd), Guppy's on the Beach (waterfront sunset views), Keegan's Seafood Grille (local neighborhood fave). Breweries: 3 Daughters Brewing or Clearwater Brewing (~15 min). Baby activity: Clearwater Marine Aquarium (~20 min, free under 3).",
   },
   {
     id: "3", year: 2026,
@@ -51,14 +51,14 @@ export const trips = [
   {
     id: "4", year: 2026,
     tripName: "Orlando — WAH Conference", tripType: "Work-WAH",
-    startDate: "May 21 2026", endDate: "May 23 2026", nights: "2",
+    startDate: "May 21 2026", endDate: "May 24 2026", nights: "3",
     destination: "Orlando, FL",
     accommodationName: "Sheraton Vistana Villages", accommodationAddress: "",
     accommodationType: "Hotel",
     accomCost: "$0 (WAH)", flights: "$0 (WAH)", groundTransport: "$0 (drive Tampa-MCO ~1.5 hrs)",
     foodActivEst: "—", totalEst: "$0", expensed: "WAH",
     outOfPocket: "$0", status: "BOOKED",
-    notes: "100% expensed through WAH. No personal cost.",
+    notes: "100% expensed through WAH. No personal cost. Return: MCO→ATL→TYS May 24, depart 7:00am arrive 11:09am (DL2080 + DL1743, Delta).",
   },
   {
     id: "5", year: 2026,
@@ -106,7 +106,7 @@ export const trips = [
     accomCost: "$0", flights: "$2,200", groundTransport: "$900 (car rental)",
     foodActivEst: "$1,500–$2,000", totalEst: "$4,600–$5,100", expensed: "$0",
     outOfPocket: "$4,600–$5,100", status: "BOOKED",
-    notes: "FIL MVC points cover hotel. Rent car for the week. Budget generously — Hawaii is expensive.",
+    notes: "FIL MVC points cover hotel. Rent car for the week. Budget generously — Hawaii is expensive. Outbound: TYS→MSP→SEA Oct 23, depart 7:55am arrive 12:30pm SEA (DL5523 + DL0889, First/Comfort+, upgrade cert waitlist). SEA→OGG Oct 23, depart 2:30pm arrive 5:46pm (DL0344, nonstop, A321neo). Schedule change flag on TYS→MSP. Return: OGG→SLC Oct 31, depart 9:12pm arrive 6:13am Nov 1 (red-eye, nonstop, Comfort+, upgrade cert waitlist). SLC→MSP→TYS Nov 1, depart 8:00am arrive 4:40pm (DL2916 + DL5335, First Class both legs, seats 3C/3D).",
   },
   {
     id: "9", year: 2026,
