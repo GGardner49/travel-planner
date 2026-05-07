@@ -87,16 +87,37 @@ export const trips = [
     notes: "100% expensed through WAH. No personal cost.",
   },
   {
+    id: "4b", year: 2026,
+    tripName: "Avon / Beaver Creek — Summer", tripType: "Personal",
+    startDate: "Jul 2 2026", endDate: "Jul 6 2026", nights: "4",
+    destination: "Avon, CO (Beaver Creek Valley)",
+    accommodationName: "Sheraton Mountain Vistas", accommodationAddress: "160 W Beaver Creek Blvd, Avon, CO 81620",
+    accommodationType: "Hotel — FIL Points",
+    accomCost: "$0", flights: "TBD", groundTransport: "TBD (rental car or free Avon shuttle)",
+    foodActivEst: "$400–$600", totalEst: "TBD (flights) + $400–$600", expensed: "$0",
+    outOfPocket: "TBD (flights) + $400–$600", status: "BOOKED",
+    activities: [
+      { type: "activity", name: "Pool + Hot Tubs", desc: "On-site — heated outdoor pool with mountain views" },
+      { type: "park", name: "Nottingham Park", desc: "0.2 mi walk (~5 min) — lake loop trail (0.8 mi), playground, beach, paddle boards. Fully stroller-friendly." },
+      { type: "activity", name: "Eagle River Trail", desc: "~0.2 mi walk to trailhead (via Nottingham Park) — paved, flat trail along Eagle River, stroller-friendly" },
+      { type: "restaurant", name: "Ein Prosit", desc: "0.4 mi walk (~8 min) — Bavarian beer hall, 12 German/Austrian taps, 16 types of sausage" },
+      { type: "restaurant", name: "Loaded Joe's", desc: "0.4 mi walk (~8 min) — top-rated local coffee shop, espresso + breakfast burritos" },
+      { type: "activity", name: "Beaver Creek Village Stroll", desc: "Free Avon shuttle (~15 min) or ~9 min drive — shops, restaurants, mountain village" },
+      { type: "activity", name: "Gondola Ride", desc: "Free shuttle to Beaver Creek base (~15 min), then gondola up — scenic mountain views" },
+    ],
+    notes: "Sheraton Mountain Vistas on FIL points — free stay. Free Avon town shuttle to Beaver Creek (~15 min). Flights TBD (nearest airports: Eagle County EGE ~15 min drive, Denver DEN ~2 hrs drive).",
+  },
+  {
     id: "5", year: 2026,
     tripName: "Winston-Salem Summer", tripType: "Personal",
-    startDate: "Jul 3–6 OR Aug 1–3", endDate: "TBD", nights: "2",
+    startDate: "Aug 1 2026", endDate: "Aug 3 2026", nights: "2",
     destination: "Winston-Salem, NC",
     accommodationName: "TBD", accommodationAddress: "",
     accommodationType: "Hotel/Family",
     accomCost: "$150–$200", flights: "$0 (drive)", groundTransport: "$100–$150 (gas)",
     foodActivEst: "$150", totalEst: "$400–$500", expensed: "$0",
     outOfPocket: "$400–$500", status: "PLAN",
-    notes: "~4.5 hr drive from Rockwood TN. Primary: July 4th weekend. Backup: early August. TBD pending sister's baby due date.",
+    notes: "~4.5 hr drive from Rockwood TN. Penciled for Aug 1–3 but dates still flexible — may move. TBD pending sister's baby due date.",
   },
   {
     id: "6", year: 2026,
@@ -388,7 +409,7 @@ export const tripsByYear = {
 };
 
 export const yearTotals = {
-  2026: { label: "~$7,200–$8,650", notes: "Orlando + Indian Rocks Beach + Bristol + Asheville/Blue Ridge + Winston ×2 + Maui. Work trips $0." },
+  2026: { label: "~$7,200–$8,650 + Avon TBD", notes: "Orlando + Indian Rocks Beach + Avon CO + Bristol + Asheville/Blue Ridge + Winston ×2 + Maui. Work trips $0. Avon costs TBD pending flights + points confirmation." },
   2027: { label: "$8,400–$14,700", notes: "Pensacola + 2 short trips + Japan. Japan is the big variable." },
   2028: { label: "$6,800–$11,800", notes: "2 short trips + BVI. Austria moved to 2029." },
   2029: { label: "$6,100–$10,400", notes: "2 short trips + Austria big trip." },
