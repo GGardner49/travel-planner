@@ -403,7 +403,7 @@ export const tripsByYear = {
 };
 
 export const yearTotals = {
-  2026: { label: "~$7,200–$8,650 + Punta Cana TBD", notes: "Orlando + Indian Rocks Beach + Bristol + Winston-Salem + Punta Cana (TBD costs) + Asheville/Blue Ridge + Winston ×2 + Maui. Work trips $0." },
+  2026: { label: "~$9,300–$10,800", notes: "Orlando + Indian Rocks Beach + Bristol + Winston-Salem + Punta Cana ($2,085) + Maui + Asheville/Blue Ridge (TBD) + Winston Thanksgiving. Work trips $0." },
   2027: { label: "$8,400–$14,700", notes: "Pensacola + 2 short trips + Japan. Japan is the big variable." },
   2028: { label: "$6,800–$11,800", notes: "2 short trips + BVI. Austria moved to 2029." },
   2029: { label: "$6,100–$10,400", notes: "2 short trips + Austria big trip." },

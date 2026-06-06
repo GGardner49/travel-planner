@@ -186,6 +186,81 @@
       position: fixed; bottom: 4.5rem; right: 2.25rem;
       font-size: .72rem; color: rgba(240,235,224,.3);
     }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .slide { padding: 28px 18px 56px; }
+
+    /* Cover */
+    .cover-kana  { font-size: 0.7rem; letter-spacing: .3rem; }
+    .cover-title { font-size: 3.8rem; }
+    .cover-sub   { font-size: 0.7rem; letter-spacing: .2rem; margin-bottom: 1.5rem; }
+    .cover-tag   { font-size: 0.72rem; padding: .5rem .9rem; gap: .5rem; flex-wrap: wrap; justify-content: center; }
+    .red-line    { margin: 1rem auto; }
+
+    /* Journey map — stack vertically */
+    .jmap        { flex-direction: column; gap: .4rem; margin-top: 1rem; }
+    .city        { padding: 0; display: flex; align-items: center; gap: 1rem; }
+    .city-circle { width: 54px; height: 54px; font-size: 1.4rem; margin: 0; flex-shrink: 0; }
+    .city-name   { font-size: 1rem; text-align: left; }
+    .city-days   { text-align: left; margin-top: .1rem; }
+    .jarrow      { transform: rotate(90deg); font-size: 1.2rem; align-self: center; padding: 0; }
+
+    /* Stats */
+    .stats       { gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .stat-num    { font-size: 2rem; }
+    .stat-lbl    { font-size: .65rem; }
+
+    /* Cards */
+    .cards-3, .cards-2 { grid-template-columns: 1fr; }
+    .cards       { gap: .65rem; }
+    .card        { padding: .85rem 1rem; }
+    .card-emoji  { font-size: 1.3rem; margin-bottom: .3rem; }
+    .card-title  { font-size: .85rem; }
+    .card-desc   { font-size: .76rem; line-height: 1.5; }
+    .card-day    { font-size: .62rem; }
+
+    /* Content header */
+    .c-eyebrow   { font-size: .65rem; }
+    .c-title     { font-size: 1.7rem; }
+    .c-head      { margin-bottom: 1rem; }
+
+    /* Timeline — make scrollable on mobile */
+    #s3          { overflow-y: auto; justify-content: flex-start; padding-top: 28px; padding-bottom: 56px; }
+    .timeline    { gap: .42rem; }
+    .trow        { padding: .55rem .85rem; gap: .65rem; }
+    .tday        { font-size: .6rem; min-width: 38px; }
+    .tdot        { width: 7px; height: 7px; }
+    .ttitle      { font-size: .8rem; }
+    .tloc        { font-size: .68rem; }
+    .temoji      { font-size: 1.1rem; }
+
+    /* Budget */
+    .bgrid       { grid-template-columns: 1fr; gap: .75rem; }
+    .bitem       { padding: .85rem 1.1rem; }
+    .blabel      { font-size: .8rem; }
+    .bvalue      { font-size: 1.05rem; }
+    .btotal .blabel { font-size: .85rem; }
+    .btotal .bvalue { font-size: 1.5rem; }
+    .bnote       { font-size: .75rem; margin-top: 1rem; }
+
+    /* Section banner */
+    .sec-emoji   { font-size: 3rem; }
+    .sec-title   { font-size: 2.8rem; }
+    .sec-eyebrow { font-size: .7rem; }
+
+    /* CTA */
+    .cta-flag    { font-size: 2.8rem; margin-bottom: 1rem; }
+    .cta-title   { font-size: 3rem; margin-bottom: 1rem; }
+    .cta-sub     { font-size: .9rem; margin-bottom: 1.75rem; }
+    .cta-pill    { padding: .7rem 1.5rem; font-size: .85rem; }
+
+    /* Deco */
+    .deco        { font-size: 10rem; right: -50px; opacity: .03; }
+
+    /* Nav */
+    .hint        { display: none; }
+    .counter     { font-size: .7rem; top: 1.25rem; right: 1.25rem; }
+  }
   </style>
 </head>
 <body>
