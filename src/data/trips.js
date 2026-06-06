@@ -33,7 +33,7 @@ export const trips = [
     accommodationType: "AirBnb",
     accomCost: "$400", flights: "$0 (business)", groundTransport: "$0",
     foodActivEst: "TBD", totalEst: "$400", expensed: "$0",
-    outOfPocket: "$400", status: "BOOKED",
+    outOfPocket: "$400", status: "COMPLETE",
     flightDetails: "TYS→ATL→TPA, May 16 — depart 8:35am, arrive 12:40pm (DL5279 + DL1099, Delta Comfort). Flights paid by business.",
     activities: [
       { type: "beach", name: "Gulf Beach Access", desc: "Steps from Airbnb — direct Gulf access, calm shallow water" },
@@ -58,7 +58,7 @@ export const trips = [
     accommodationType: "Condo — Rocky Point / Westshore",
     accomCost: "$0 (GST)", flights: "$0 (GST)", groundTransport: "$0",
     foodActivEst: "—", totalEst: "$0", expensed: "GST",
-    outOfPocket: "$0", status: "BOOKED",
+    outOfPocket: "$0", status: "COMPLETE",
     activities: [
       { type: "restaurant", name: "Whiskey Joe's", desc: "~2 min drive — waterfront bar + grill on Tampa Bay, right on the causeway ⭐ visited" },
       { type: "activity", name: "Ben T. Davis Beach", desc: "~5 min drive — public Tampa Bay beach, calm water, stroller-friendly" },
@@ -84,7 +84,7 @@ export const trips = [
     accommodationType: "Hotel",
     accomCost: "$0 (WAH)", flights: "$0 (WAH)", groundTransport: "$0 (drive Tampa-MCO ~1.5 hrs)",
     foodActivEst: "—", totalEst: "$0", expensed: "WAH",
-    outOfPocket: "$0", status: "BOOKED",
+    outOfPocket: "$0", status: "COMPLETE",
     flightDetails: "Return: MCO→ATL→TYS, May 24 — depart 7:00am, arrive 11:09am (DL2080 + DL1743, Delta).",
     notes: "100% expensed through WAH. No personal cost.",
   },
