@@ -95,10 +95,10 @@ export const trips = [
     destination: "Winston-Salem, NC",
     accommodationName: "TBD", accommodationAddress: "",
     accommodationType: "Hotel/Family",
-    accomCost: "$150–$200", flights: "$0 (drive)", groundTransport: "$100–$150 (gas)",
-    foodActivEst: "$150", totalEst: "$400–$500", expensed: "$0",
-    outOfPocket: "$400–$500", status: "PLAN",
-    notes: "~4.5 hr drive from Rockwood TN. Penciled for Jul 17–19.",
+    accomCost: "$0 (family)", flights: "$0 (drive)", groundTransport: "$60 (gas)",
+    foodActivEst: "$0", totalEst: "$60", expensed: "$0",
+    outOfPocket: "$60", status: "PLAN",
+    notes: "~4.5 hr drive from Rockwood TN. Staying with family. Jul 17–19.",
   },
   {
     id: "6", year: 2026,
@@ -107,10 +107,10 @@ export const trips = [
     destination: "Bristol / Johnson City, TN",
     accommodationName: "Family", accommodationAddress: "",
     accommodationType: "Family — Free",
-    accomCost: "$0", flights: "$0", groundTransport: "$50–$75 (gas)",
-    foodActivEst: "$100–$150", totalEst: "$150–$225", expensed: "$0",
-    outOfPocket: "$150–$225", status: "PLAN",
-    notes: "~2 hr drive from Lenoir City. Free accommodation with family. July 4th weekend — probably.",
+    accomCost: "$0 (family)", flights: "$0", groundTransport: "$50 (gas)",
+    foodActivEst: "$0", totalEst: "$50", expensed: "$0",
+    outOfPocket: "$50", status: "PLAN",
+    notes: "~2 hr drive from Lenoir City. Staying with family. July 4th weekend — probably.",
   },
   {
     id: "8", year: 2026,
@@ -145,9 +145,9 @@ export const trips = [
     destination: "Winston-Salem, NC",
     accommodationName: "TBD", accommodationAddress: "",
     accommodationType: "Hotel/Family",
-    accomCost: "$150–$200", flights: "$0 (drive)", groundTransport: "$100–$150 (gas)",
-    foodActivEst: "$200", totalEst: "$450–$550", expensed: "$0",
-    outOfPocket: "$450–$550", status: "PLAN",
+    accomCost: "$0 (family)", flights: "$0 (drive)", groundTransport: "$60 (gas)",
+    foodActivEst: "$0", totalEst: "$60", expensed: "$0",
+    outOfPocket: "$60", status: "PLAN",
     notes: "~4.5 hr drive. Holiday visit to Gabbi's family. 4 nights Wed–Sun around Thanksgiving.",
   },
 
@@ -391,7 +391,7 @@ export const tripsByYear = {
 };
 
 export const yearTotals = {
-  2026: { label: "~$9,200–$10,000", notes: "Orlando + Indian Rocks Beach + Bristol + Winston-Salem (×2) + Punta Cana ($2,085) + Maui. Work trips $0." },
+  2026: { label: "~$8,400–$8,900", notes: "Orlando + Indian Rocks Beach + Bristol ($50) + Winston-Salem (×2, $120) + Punta Cana ($2,085) + Maui. Work trips $0." },
   2027: { label: "$8,400–$14,700", notes: "Pensacola + 2 short trips + Japan. Japan is the big variable." },
   2028: { label: "$6,800–$11,800", notes: "2 short trips + BVI. Austria moved to 2029." },
   2029: { label: "$6,100–$10,400", notes: "2 short trips + Austria big trip." },
