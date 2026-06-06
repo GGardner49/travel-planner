@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Japan 2027 — Gardner Family</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0f0f1a;
+      --surface:  #1a1a2e;
+      --red:      #c0392b;
+      --red-lite: #e05a4e;
+      --gold:     #d4a843;
+      --cream:    #f0ebe0;
+      --muted:    rgba(240,235,224,0.55);
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow: hidden;
+    }
+
+    /* ── SLIDES ── */
+    .pres { width: 100%; height: 100vh; position: relative; }
+
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 60px 80px;
+      opacity: 0; transform: translateX(50px);
+      transition: opacity .45s ease, transform .45s ease;
+      pointer-events: none; overflow: hidden;
+    }
+    .slide.active  { opacity: 1; transform: translateX(0); pointer-events: all; }
+    .slide.exit    { opacity: 0; transform: translateX(-50px); }
+
+    /* ── BG DECO ── */
+    .deco {
+      position: absolute; right: -80px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 22rem; opacity: .04;
+      pointer-events: none; user-select: none;
+    }
+
+    /* ── COVER ── */
+    .slide-cover {
+      background: radial-gradient(ellipse at 70% 50%, #2a0a0a 0%, #0f0f1a 60%);
+      text-align: center;
+    }
+    .cover-kana   { font-size: 1rem; letter-spacing: .7rem; opacity: .3; margin-bottom: .75rem; }
+    .cover-title  {
+      font-family: 'Playfair Display', serif;
+      font-size: 7rem; font-weight: 700; line-height: 1;
+      color: var(--cream);
+    }
+    .cover-title span { color: var(--red); }
+    .red-line  { width: 70px; height: 3px; background: var(--red); margin: 1.25rem auto; }
+    .cover-sub { font-size: 1rem; letter-spacing: .35rem; text-transform: uppercase; color: var(--muted); margin-bottom: 2.5rem; }
+    .cover-tag {
+      display: inline-flex; align-items: center; gap: 1.2rem;
+      padding: .65rem 2rem;
+      border: 1px solid rgba(192,57,43,.45); border-radius: 100px;
+      font-size: .85rem; color: var(--red-lite); letter-spacing: .08rem;
+    }
+
+    /* ── SECTION BANNER ── */
+    .slide-section { background: var(--red); text-align: center; }
+    .sec-eyebrow { font-size: .8rem; letter-spacing: .4rem; text-transform: uppercase; opacity: .75; margin-bottom: 1rem; }
+    .sec-title   { font-family: 'Playfair Display', serif; font-size: 4.5rem; font-weight: 700; line-height: 1.1; }
+    .sec-emoji   { font-size: 4.5rem; margin-bottom: 1.5rem; }
+
+    /* ── GENERIC CONTENT ── */
+    .slide-content { background: var(--bg); }
+    .c-head        { text-align: center; margin-bottom: 2.25rem; }
+    .c-eyebrow     { font-size: .75rem; letter-spacing: .4rem; text-transform: uppercase; color: var(--red-lite); margin-bottom: .6rem; }
+    .c-title       { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; }
+
+    /* ── CARDS ── */
+    .cards {
+      display: grid;
+      gap: 1.1rem;
+      width: 100%; max-width: 1060px;
+    }
+    .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .cards-2 { grid-template-columns: repeat(2, 1fr); }
+
+    .card {
+      background: var(--surface); border-radius: 14px;
+      padding: 1.4rem 1.6rem;
+      border-left: 4px solid var(--red);
+    }
+    .card-gold { border-left-color: var(--gold); background: rgba(212,168,67,.08); }
+    .card-day  { font-size: .7rem; letter-spacing: .2rem; text-transform: uppercase; color: var(--red-lite); margin-bottom: .35rem; }
+    .card-day-gold { color: var(--gold); }
+    .card-emoji { font-size: 1.8rem; margin-bottom: .6rem; }
+    .card-title { font-weight: 600; font-size: .95rem; margin-bottom: .4rem; }
+    .card-desc  { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── JOURNEY MAP ── */
+    .jmap { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 1.5rem; }
+    .city { text-align: center; padding: 0 1.75rem; }
+    .city-circle {
+      width: 110px; height: 110px; border-radius: 50%;
+      background: var(--surface); border: 3px solid var(--red);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      margin: 0 auto .9rem; font-size: 2.4rem;
+    }
+    .city-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; }
+    .city-days { font-size: .75rem; color: var(--muted); margin-top: .2rem; }
+    .jarrow    { font-size: 1.8rem; color: var(--red); padding: 0 .5rem; }
+
+    .stats { display: flex; gap: 3.5rem; justify-content: center; margin-top: 2.5rem; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 3.2rem; color: var(--red-lite); line-height: 1; text-align: center; }
+    .stat-lbl { font-size: .72rem; letter-spacing: .2rem; text-transform: uppercase; color: var(--muted); margin-top: .35rem; text-align: center; }
+
+    /* ── TIMELINE ── */
+    .timeline { display: flex; flex-direction: column; gap: .55rem; width: 100%; max-width: 920px; }
+    .trow {
+      display: flex; align-items: center; gap: 1.25rem;
+      background: var(--surface); border-radius: 10px;
+      padding: .75rem 1.25rem;
+    }
+    .trow-gold { background: rgba(212,168,67,.09); }
+    .tday  { font-size: .7rem; letter-spacing: .15rem; text-transform: uppercase; color: var(--red-lite); min-width: 48px; font-weight: 600; }
+    .tday-gold { color: var(--gold); }
+    .tdot  { width: 9px; height: 9px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+    .tdot-gold { background: var(--gold); }
+    .ttitle { font-weight: 600; font-size: .9rem; }
+    .tloc   { font-size: .78rem; color: var(--muted); margin-top: .1rem; }
+    .temoji { font-size: 1.35rem; margin-left: auto; }
+
+    /* ── BUDGET ── */
+    .bgrid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.1rem; max-width: 860px; width: 100%;
+    }
+    .bitem {
+      background: var(--surface); border-radius: 14px;
+      padding: 1.25rem 1.75rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .blabel { font-size: .88rem; color: var(--muted); }
+    .bvalue { font-family: 'Playfair Display', serif; font-size: 1.35rem; }
+    .btotal { grid-column: 1 / -1; background: var(--red); }
+    .btotal .blabel { color: rgba(255,255,255,.85); font-size: .95rem; font-weight: 600; }
+    .btotal .bvalue { font-size: 2rem; color: #fff; }
+    .bnote  { margin-top: 1.25rem; font-size: .82rem; color: var(--muted); text-align: center; max-width: 700px; }
+
+    /* ── CTA ── */
+    .slide-cta { background: radial-gradient(ellipse at 30% 50%, #2a0a0a 0%, #0f0f1a 60%); text-align: center; }
+    .cta-flag  { font-size: 4rem; margin-bottom: 1.5rem; }
+    .cta-title { font-family: 'Playfair Display', serif; font-size: 5.5rem; line-height: 1; margin-bottom: 1.5rem; }
+    .cta-sub   { font-size: 1.15rem; color: var(--muted); margin-bottom: 2.5rem; max-width: 560px; }
+    .cta-pill  {
+      padding: .9rem 2.75rem; background: var(--red); border-radius: 100px;
+      font-size: 1rem; font-weight: 600; color: #fff; letter-spacing: .04rem;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; bottom: 1.75rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: .65rem; z-index: 100;
+    }
+    .ndot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(240,235,224,.2); cursor: pointer;
+      transition: all .3s;
+    }
+    .ndot.active { background: var(--red); width: 22px; border-radius: 4px; }
+
+    .counter {
+      position: fixed; top: 1.75rem; right: 2rem;
+      font-size: .78rem; color: var(--muted); letter-spacing: .08rem; z-index: 100;
+    }
+    .hint {
+      position: fixed; bottom: 4.5rem; right: 2.25rem;
+      font-size: .72rem; color: rgba(240,235,224,.3);
+    }
+  </style>
+</head>
+<body>
+
+<div class="pres" id="pres">
+
+  <!-- ────────────────────────────────────────────
+       SLIDE 1 · COVER
+  ──────────────────────────────────────────── -->
+  <div class="slide slide-cover active" id="s0">
+    <div class="deco">⛩️</div>
+    <div class="cover-kana">日 本 · J A P A N · 2 0 2 7</div>
+    <div class="cover-title">Japan<span>.</span></div>
+    <div class="red-line"></div>
+    <div class="cover-sub">A Gardner Family Adventure · October 2027</div>
+    <div class="cover-tag">⛩️ Tokyo &nbsp;·&nbsp; 🗻 Hakone &nbsp;·&nbsp; 🏯 Kyoto</div>
+  </div>
+
+  <!-- ────────────────────────────────────────────
+       SLIDE 2 · JOURNEY MAP
+  ──────────────────────────────────────────── -->
+  <div class="slide slide-content" id="s1">
+    <div class="deco">🗾</div>
+    <div class="c-head">
+      <div class="c-eyebrow">The Journey</div>
+      <div class="c-title">9 Days. 3 Cities. One Epic Trip.</div>
+    </div>
+    <div class="jmap">
+      <div class="city">
+        <div class="city-circle">🗼</div>
+        <div class="city-name">Tokyo</div>
+        <div class="city-days">Days 1 – 4</div>
+      </div>
+      <div class="jarrow">→</div>
+      <div class="city">
+        <div class="city-circle">🗻</div>
+        <div class="city-name">Hakone</div>
+        <div class="city-days">Day 4 day trip</div>
+      </div>
+      <div class="jarrow">→</div>
+      <div class="city">
+        <div class="city-circle">⛩️</div>
+        <div class="city-name">Kyoto</div>
+        <div class="city-days">Days 5 – 8</div>
+      </div>
+      <div class="jarrow">→</div>
+      <div class="city">
+        <div class="city-circle">✈️</div>
+        <div class="city-name">Home</div>
+        <div class="city-days">Day 9</div>
+      </div>
+    </div>
+    <div class="stats">
+      <div><div class="stat-num">9</div><div class="stat-lbl">Days</div></div>
+      <div><div class="stat-num">3</div><div class="stat-lbl">Destinations</div></div>
+      <div><div class="stat-num">🍁</div><div class="stat-lbl">Fall Foliage</div></div>
+      <div><div class="stat-num">∞</div><div class="stat-lbl">Ramen</div></div>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────
+       SLIDE 3 · WHY JAPAN
+  ──────────────────────────────────────────── -->
+  <div class="slide slide-content" id="s2">
+    <div class="c-head">
+      <div class="c-eyebrow">Making the Case</div>
+      <div class="c-title">Why Japan? Why Now?</div>
+    </div>
+    <div class="cards cards-3">
+      <div class="card">
+        <div class="card-emoji">🍁</div>
+        <div class="card-title">Fall Foliage Season</div>
+        <div class="card-desc">October is peak <em>koyo</em> — Japan's fall color season. Temples, bamboo groves, and mountain paths in full red and gold.</div>
+      </div>
+      <div class="card">
+        <div class="card-emoji">👶</div>
+        <div class="card-title">Perfect Age for Cora</div>
+        <div class="card-desc">She'll be almost 2 — old enough to experience the magic, young enough to fly as a lap infant for free.</div>
+      </div>
+      <div class="card">
+        <div class="card-emoji">🛡️</div>
+        <div class="card-title">Safest Country on Earth</div>
+        <div class="card-desc">Famously clean, punctual, and welcoming. One of the easiest countries in the world to travel with a baby.</div>
+      </div>
+      <div class="card">
+        <div class="card-emoji">🎡</div>
+        <div class="card-title">Tokyo DisneySea</div>
+        <div class="card-desc">Ranked #1 theme park in the world. Nothing like the US parks — a completely different, magical experience.</div>
+      </div>
+      <div class="card">
+        <div class="card-emoji">🍜</div>
+        <div class="card-title">The Best Food on Earth</div>
+        <div class="card-desc">Ramen, wagyu, sushi, yakitori, matcha everything. Japan has more Michelin stars than any country in the world.</div>
+      </div>
+      <div class="card">
+        <div class="card-emoji">🏯</div>
+        <div class="card-title">Living History</div>
+        <div class="card-desc">Ancient shrines and bullet trains side by side. The contrast of old and new is unlike anywhere else.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────
+       SLIDE 4 · FULL ITINERARY TIMELINE
+  ──────────────────────────────────────────── -->
+  <div class="slide slide-content" id="s3" style="padding-top: 40px; padding-bottom: 40px; justify-content: flex-start; padding-top: 50px;">
+    <div class="c-head" style="margin-bottom: 1.25rem;">
+      <div class="c-eyebrow">Day by Day</div>
+      <div class="c-title">The Full Itinerary</div>
+    </div>
+    <div class="timeline">
+      <div class="trow">
+        <div class="tday">Day 1</div><div class="tdot"></div>
+        <div><div class="ttitle">Arrival in Tokyo</div><div class="tloc">Daikanyama / Ebisu — settle in, neighborhood walk, easy first night</div></div>
+        <div class="temoji">✈️</div>
+      </div>
+      <div class="trow">
+        <div class="tday">Day 2</div><div class="tdot"></div>
+        <div><div class="ttitle">Culture + Exploration</div><div class="tloc">Meiji Shrine → Harajuku → Shibuya Crossing → Daikanyama wander</div></div>
+        <div class="temoji">⛩️</div>
+      </div>
+      <div class="trow trow-gold">
+        <div class="tday tday-gold">Day 3</div><div class="tdot tdot-gold"></div>
+        <div><div class="ttitle">Tokyo DisneySea ⭐</div><div class="tloc">Ranked #1 theme park in the world — arrive at rope drop, leave mid-afternoon</div></div>
+        <div class="temoji">🎡</div>
+      </div>
+      <div class="trow">
+        <div class="tday">Day 4</div><div class="tdot"></div>
+        <div><div class="ttitle">Hakone Day Trip</div><div class="tloc">Ropeway over volcanic valley · Lake Ashi + Mt. Fuji views · Optional onsen</div></div>
+        <div class="temoji">🗻</div>
+      </div>
+      <div class="trow">
+        <div class="tday">Day 5</div><div class="tdot"></div>
+        <div><div class="ttitle">Shinkansen to Kyoto</div><div class="tloc">Bullet train to the ancient capital · Gion geisha district evening stroll</div></div>
+        <div class="temoji">🚅</div>
+      </div>
+      <div class="trow">
+        <div class="tday">Day 6</div><div class="tdot"></div>
+        <div><div class="ttitle">Kyoto Highlights</div><div class="tloc">Fushimi Inari at sunrise · Nishiki Market · Kiyomizudera · Higashiyama street</div></div>
+        <div class="temoji">⛩️</div>
+      </div>
+      <div class="trow">
+        <div class="tday">Day 7</div><div class="tdot"></div>
+        <div><div class="ttitle">Uji — Tea &amp; Temples</div><div class="tloc">Matcha experience · Byodo-in Temple (the 10-yen coin) · Riverside walk</div></div>
+        <div class="temoji">🍵</div>
+      </div>
+      <div class="trow">
+        <div class="tday">Day 8</div><div class="tdot"></div>
+        <div><div class="ttitle">Arashiyama Bamboo Grove</div><div class="tloc">Iconic bamboo forest · Monkey Park · Oi River walk · Best tofu lunch</div></div>
+        <div class="temoji">🎍</div>
+      </div>
+      <div class="trow">
+        <div class="tday">Day 9</div><div class="tdot"></div>
+        <div><div class="ttitle">Return to Tokyo + Fly Home</div><div class="tloc">Shinkansen back to Tokyo · Final dinner · Depart</div></div>
+        <div class="temoji">🏠</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────
+       SLIDE 5 · TOKYO DEEP DIVE
+  ──────────────────────────────────────────── -->
+  <div class="slide slide-content" id="s4">
+    <div class="deco">🗼</div>
+    <div class="c-head">
+      <div class="c-eyebrow">Days 1 – 4</div>
+      <div class="c-title">Tokyo</div>
+    </div>
+    <div class="cards cards-2" style="max-width: 900px;">
+      <div class="card">
+        <div class="card-day">Day 1</div>
+        <div class="card-emoji">🛬</div>
+        <div class="card-title">Arrive + Settle In</div>
+        <div class="card-desc">Base in Daikanyama or Ebisu — one of Tokyo's most charming, walkable neighborhoods. Easy first night to decompress and explore.</div>
+      </div>
+      <div class="card">
+        <div class="card-day">Day 2</div>
+        <div class="card-emoji">⛩️</div>
+        <div class="card-title">Shrines + Streets</div>
+        <div class="card-desc">Meiji Shrine in the morning → quick Harajuku walk → Shibuya Crossing → wander back through Daikanyama. Dinner in the neighborhood.</div>
+      </div>
+      <div class="card card-gold">
+        <div class="card-day card-day-gold">Day 3 — Highlight ⭐</div>
+        <div class="card-emoji">🎡</div>
+        <div class="card-title">Tokyo DisneySea</div>
+        <div class="card-desc">Not your average Disney. Seven fantasy "ports," world-class rides, incredible food. Arrive at rope drop — leave mid-afternoon before the rush.</div>
+      </div>
+      <div class="card">
+        <div class="card-day">Day 4</div>
+        <div class="card-emoji">🗻</div>
+        <div class="card-title">Hakone Day Trip</div>
+        <div class="card-desc">Train to Hakone for the volcanic ropeway over Owakudani, Lake Ashi views of Mt. Fuji, and an optional onsen soak. Back to Tokyo by evening.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────
+       SLIDE 6 · KYOTO DEEP DIVE
+  ──────────────────────────────────────────── -->
+  <div class="slide slide-content" id="s5">
+    <div class="deco">🏯</div>
+    <div class="c-head">
+      <div class="c-eyebrow">Days 5 – 8</div>
+      <div class="c-title">Kyoto — The Ancient Capital</div>
+    </div>
+    <div class="cards cards-2" style="max-width: 900px;">
+      <div class="card">
+        <div class="card-day">Day 5</div>
+        <div class="card-emoji">🚅</div>
+        <div class="card-title">Bullet Train Arrival</div>
+        <div class="card-desc">Shinkansen from Tokyo at 200 mph — 2.5 hrs. Arrive in the afternoon. Evening stroll through Gion, Kyoto's famous geisha district.</div>
+      </div>
+      <div class="card">
+        <div class="card-day">Day 6</div>
+        <div class="card-emoji">⛩️</div>
+        <div class="card-title">Kyoto's Greatest Hits</div>
+        <div class="card-desc">Fushimi Inari gates at sunrise (go early — it's magical). Nishiki Market for snacks. Kiyomizudera temple. Higashiyama old street.</div>
+      </div>
+      <div class="card">
+        <div class="card-day">Day 7</div>
+        <div class="card-emoji">🍵</div>
+        <div class="card-title">Uji — Japan's Tea Capital</div>
+        <div class="card-desc">Short train to Uji. Matcha everything — lattes, ice cream, sweets. Byodo-in Temple (the image on the 10-yen coin). Riverside walk.</div>
+      </div>
+      <div class="card">
+        <div class="card-day">Day 8</div>
+        <div class="card-emoji">🎍</div>
+        <div class="card-title">Arashiyama Bamboo Grove</div>
+        <div class="card-desc">The iconic bamboo forest at dawn — then Monkey Park, the Oi River trail, and the best tofu lunch of your life.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────
+       SLIDE 7 · THE FOOD
+  ──────────────────────────────────────────── -->
+  <div class="slide slide-content" id="s6">
+    <div class="c-head">
+      <div class="c-eyebrow">The Real Reason We're Going</div>
+      <div class="c-title">The Food Is Unreal</div>
+    </div>
+    <div class="cards cards-3">
+      <div class="card">
+        <div class="card-emoji">🍜</div>
+        <div class="card-title">Ramen</div>
+        <div class="card-desc">Tokyo-style, Kyoto-style, from tiny 8-seat shops at midnight. Every bowl is different. You'll never think about ramen the same way.</div>
+      </div>
+      <div class="card">
+        <div class="card-emoji">🍣</div>
+        <div class="card-title">Sushi + Seafood</div>
+        <div class="card-desc">Tsukiji outer market for breakfast. Conveyor belt sushi that's somehow incredible. Omakase for a special night.</div>
+      </div>
+      <div class="card">
+        <div class="card-emoji">🍡</div>
+        <div class="card-title">Street Food</div>
+        <div class="card-desc">Takoyaki, yakitori, mochi, taiyaki. Every corner is a snack. Nishiki Market in Kyoto alone could fill a whole afternoon.</div>
+      </div>
+      <div class="card">
+        <div class="card-emoji">🍵</div>
+        <div class="card-title">Matcha Everything</div>
+        <div class="card-desc">Matcha lattes, ice cream, Kit-Kats, traditional ceremony in Uji — the birthplace of Japanese tea. Cora will try it all.</div>
+      </div>
+      <div class="card">
+        <div class="card-emoji">🥩</div>
+        <div class="card-title">Wagyu</div>
+        <div class="card-desc">Japanese beef is in a category of its own. Pick one night for Kobe or Matsusaka wagyu — it's worth every yen.</div>
+      </div>
+      <div class="card">
+        <div class="card-emoji">🍺</div>
+        <div class="card-title">Izakayas</div>
+        <div class="card-desc">Japanese pub-style dining — beer, sake, small plates, late nights. The best way to end any day in Tokyo or Kyoto.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────
+       SLIDE 8 · BUDGET
+  ──────────────────────────────────────────── -->
+  <div class="slide slide-content" id="s7">
+    <div class="c-head">
+      <div class="c-eyebrow">The Numbers</div>
+      <div class="c-title">What Are We Talking?</div>
+    </div>
+    <div class="bgrid">
+      <div class="bitem">
+        <span class="blabel">✈️ Flights (2 adults)</span>
+        <span class="bvalue">$3,000 – $5,000</span>
+      </div>
+      <div class="bitem">
+        <span class="blabel">🏨 Hotels (8 nights)</span>
+        <span class="bvalue">TBD — Bonvoy pts</span>
+      </div>
+      <div class="bitem">
+        <span class="blabel">🚅 JR Pass + Transit</span>
+        <span class="bvalue">~$300</span>
+      </div>
+      <div class="bitem">
+        <span class="blabel">🍜 Food + Activities</span>
+        <span class="bvalue">$2,500 – $3,500</span>
+      </div>
+      <div class="bitem btotal">
+        <span class="blabel">Total Estimated Trip Cost</span>
+        <span class="bvalue">$6,500 – $9,500</span>
+      </div>
+    </div>
+    <div class="bnote">
+      Cora flies free as a lap infant. Checking Marriott Bonvoy points for Tokyo + Kyoto hotels — could significantly reduce the total. Watching for flights starting Oct–Nov 2026 (12 months out for best fares).
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────
+       SLIDE 9 · CTA
+  ──────────────────────────────────────────── -->
+  <div class="slide slide-cta" id="s8">
+    <div class="deco">⛩️</div>
+    <div class="cta-flag">🇯🇵</div>
+    <div class="cta-title">Let's Do This.</div>
+    <div class="red-line"></div>
+    <div class="cta-sub">October 2027. The Gardners take Japan.<br>Who's in?</div>
+    <div class="cta-pill">Start watching flights · Oct – Nov 2026 →</div>
+  </div>
+
+</div><!-- /pres -->
+
+<!-- NAV DOTS -->
+<div class="nav" id="nav"></div>
+<div class="counter" id="ctr">1 / 9</div>
+<div class="hint">← → or click anywhere to advance</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const nav    = document.getElementById('nav');
+  const ctr    = document.getElementById('ctr');
+  let cur = 0;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'ndot' + (i === 0 ? ' active' : '');
+    d.onclick = e => { e.stopPropagation(); goTo(i); };
+    nav.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    slides[cur].classList.add('exit');
+    const prev = cur;
+    setTimeout(() => slides[prev].classList.remove('exit'), 500);
+    cur = Math.max(0, Math.min(n, slides.length - 1));
+    slides[cur].classList.add('active');
+    document.querySelectorAll('.ndot').forEach((d, i) => d.classList.toggle('active', i === cur));
+    ctr.textContent = `${cur + 1} / ${slides.length}`;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight','ArrowDown',' '].includes(e.key)) { e.preventDefault(); if (cur < slides.length - 1) goTo(cur + 1); }
+    if (['ArrowLeft','ArrowUp'].includes(e.key))        { e.preventDefault(); if (cur > 0) goTo(cur - 1); }
+  });
+
+  document.getElementById('pres').addEventListener('click', e => {
+    if (e.target.closest('.ndot')) return;
+    if (cur < slides.length - 1) goTo(cur + 1);
+  });
+</script>
+</body>
+</html>
