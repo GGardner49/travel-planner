@@ -113,18 +113,6 @@ export const trips = [
     notes: "~2 hr drive from Lenoir City. Free accommodation with family. July 4th weekend — probably.",
   },
   {
-    id: "7", year: 2026,
-    tripName: "Asheville or Blue Ridge Weekend", tripType: "Personal",
-    startDate: "TBD", endDate: "TBD", nights: "2–3",
-    destination: "Asheville, NC or Blue Ridge, GA",
-    accommodationName: "TBD", accommodationAddress: "",
-    accommodationType: "Hotel or Cabin",
-    accomCost: "$300–$500", flights: "$0 (drive)", groundTransport: "$0–$50 (Uber if needed)",
-    foodActivEst: "$300–$500", totalEst: "$600–$1,000", expensed: "$0",
-    outOfPocket: "$600–$1,000", status: "PLAN",
-    notes: "Option A — Asheville: downtown hotel, fully walkable, breweries + food. Option B — Blue Ridge/Ellijay: cabin near Ellijay Ciders or Kerith House Winery, short Ubers, quieter/more relaxed.",
-  },
-  {
     id: "8", year: 2026,
     tripName: "Maui Fall", tripType: "Personal",
     startDate: "Oct 23 2026", endDate: "Nov 1 2026", nights: "9",
@@ -403,7 +391,7 @@ export const tripsByYear = {
 };
 
 export const yearTotals = {
-  2026: { label: "~$9,300–$10,800", notes: "Orlando + Indian Rocks Beach + Bristol + Winston-Salem + Punta Cana ($2,085) + Maui + Asheville/Blue Ridge (TBD) + Winston Thanksgiving. Work trips $0." },
+  2026: { label: "~$9,200–$10,000", notes: "Orlando + Indian Rocks Beach + Bristol + Winston-Salem (×2) + Punta Cana ($2,085) + Maui. Work trips $0." },
   2027: { label: "$8,400–$14,700", notes: "Pensacola + 2 short trips + Japan. Japan is the big variable." },
   2028: { label: "$6,800–$11,800", notes: "2 short trips + BVI. Austria moved to 2029." },
   2029: { label: "$6,100–$10,400", notes: "2 short trips + Austria big trip." },
