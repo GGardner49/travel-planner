@@ -42,6 +42,19 @@
     .slide.active  { opacity: 1; transform: translateX(0); pointer-events: all; }
     .slide.exit    { opacity: 0; transform: translateX(-50px); }
 
+    /* ── PHOTO BACKGROUND SLIDES ── */
+    .slide-photo {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .slide-photo::before {
+      content: '';
+      position: absolute; inset: 0;
+      z-index: 0;
+    }
+    .slide-photo > * { position: relative; z-index: 1; }
+
     /* ── BG DECO ── */
     .deco {
       position: absolute; right: -80px; top: 50%;
@@ -52,10 +65,13 @@
 
     /* ── COVER ── */
     .slide-cover {
-      background: radial-gradient(ellipse at 70% 50%, #2a0a0a 0%, #0f0f1a 60%);
       text-align: center;
+      background-image: url('https://images.unsplash.com/photo-1573456373835-579c408de263?auto=format&fit=crop&w=1920&q=80');
     }
-    .cover-kana   { font-size: 1rem; letter-spacing: .7rem; opacity: .3; margin-bottom: .75rem; }
+    .slide-cover::before {
+      background: linear-gradient(135deg, rgba(30,5,5,0.82) 0%, rgba(10,10,26,0.88) 100%);
+    }
+    .cover-kana   { font-size: 1rem; letter-spacing: .7rem; opacity: .4; margin-bottom: .75rem; }
     .cover-title  {
       font-family: 'Playfair Display', serif;
       font-size: 7rem; font-weight: 700; line-height: 1;
@@ -67,8 +83,9 @@
     .cover-tag {
       display: inline-flex; align-items: center; gap: 1.2rem;
       padding: .65rem 2rem;
-      border: 1px solid rgba(192,57,43,.45); border-radius: 100px;
+      border: 1px solid rgba(192,57,43,.55); border-radius: 100px;
       font-size: .85rem; color: var(--red-lite); letter-spacing: .08rem;
+      background: rgba(10,10,20,.4); backdrop-filter: blur(4px);
     }
 
     /* ── SECTION BANNER ── */
@@ -82,6 +99,11 @@
     .c-head        { text-align: center; margin-bottom: 2.25rem; }
     .c-eyebrow     { font-size: .75rem; letter-spacing: .4rem; text-transform: uppercase; color: var(--red-lite); margin-bottom: .6rem; }
     .c-title       { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; }
+
+    /* Photo content slides add subtle text shadow for legibility */
+    .slide-photo .c-title,
+    .slide-photo .card-title,
+    .slide-photo .ttitle { text-shadow: 0 1px 8px rgba(0,0,0,.6); }
 
     /* ── CARDS ── */
     .cards {
@@ -97,7 +119,12 @@
       padding: 1.4rem 1.6rem;
       border-left: 4px solid var(--red);
     }
+    .slide-photo .card {
+      background: rgba(15,15,28,.78);
+      backdrop-filter: blur(6px);
+    }
     .card-gold { border-left-color: var(--gold); background: rgba(212,168,67,.08); }
+    .slide-photo .card-gold { background: rgba(212,168,67,.15); }
     .card-day  { font-size: .7rem; letter-spacing: .2rem; text-transform: uppercase; color: var(--red-lite); margin-bottom: .35rem; }
     .card-day-gold { color: var(--gold); }
     .card-emoji { font-size: 1.8rem; margin-bottom: .6rem; }
@@ -105,11 +132,18 @@
     .card-desc  { font-size: .82rem; color: var(--muted); line-height: 1.6; }
 
     /* ── JOURNEY MAP ── */
+    .slide-journey {
+      background-image: url('https://images.unsplash.com/photo-1618278942403-e973260cc425?auto=format&fit=crop&w=1920&q=80');
+    }
+    .slide-journey::before {
+      background: linear-gradient(180deg, rgba(10,10,26,0.80) 0%, rgba(10,10,26,0.88) 100%);
+    }
     .jmap { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 1.5rem; }
     .city { text-align: center; padding: 0 1.75rem; }
     .city-circle {
       width: 110px; height: 110px; border-radius: 50%;
-      background: var(--surface); border: 3px solid var(--red);
+      background: rgba(26,26,46,.85); border: 3px solid var(--red);
+      backdrop-filter: blur(4px);
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       margin: 0 auto .9rem; font-size: 2.4rem;
@@ -121,6 +155,14 @@
     .stats { display: flex; gap: 3.5rem; justify-content: center; margin-top: 2.5rem; }
     .stat-num { font-family: 'Playfair Display', serif; font-size: 3.2rem; color: var(--red-lite); line-height: 1; text-align: center; }
     .stat-lbl { font-size: .72rem; letter-spacing: .2rem; text-transform: uppercase; color: var(--muted); margin-top: .35rem; text-align: center; }
+
+    /* ── WHY JAPAN ── */
+    .slide-why {
+      background-image: url('https://images.unsplash.com/photo-1613487691352-7d9b4ee5045b?auto=format&fit=crop&w=1920&q=80');
+    }
+    .slide-why::before {
+      background: linear-gradient(135deg, rgba(10,10,26,0.82) 0%, rgba(20,5,5,0.85) 100%);
+    }
 
     /* ── TIMELINE ── */
     .timeline { display: flex; flex-direction: column; gap: .55rem; width: 100%; max-width: 920px; }
@@ -138,6 +180,30 @@
     .tloc   { font-size: .78rem; color: var(--muted); margin-top: .1rem; }
     .temoji { font-size: 1.35rem; margin-left: auto; }
 
+    /* ── TOKYO ── */
+    .slide-tokyo {
+      background-image: url('https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&w=1920&q=80');
+    }
+    .slide-tokyo::before {
+      background: linear-gradient(180deg, rgba(10,10,26,0.78) 0%, rgba(10,10,26,0.88) 100%);
+    }
+
+    /* ── KYOTO ── */
+    .slide-kyoto {
+      background-image: url('https://images.unsplash.com/photo-1597730763269-c49ab9f9db0f?auto=format&fit=crop&w=1920&q=80');
+    }
+    .slide-kyoto::before {
+      background: linear-gradient(180deg, rgba(10,10,26,0.80) 0%, rgba(10,10,26,0.88) 100%);
+    }
+
+    /* ── FOOD ── */
+    .slide-food {
+      background-image: url('https://images.unsplash.com/photo-1632440722549-692fc6af969e?auto=format&fit=crop&w=1920&q=80');
+    }
+    .slide-food::before {
+      background: linear-gradient(135deg, rgba(10,10,26,0.82) 0%, rgba(20,5,5,0.88) 100%);
+    }
+
     /* ── BUDGET ── */
     .bgrid {
       display: grid; grid-template-columns: 1fr 1fr;
@@ -154,9 +220,16 @@
     .btotal .blabel { color: rgba(255,255,255,.85); font-size: .95rem; font-weight: 600; }
     .btotal .bvalue { font-size: 2rem; color: #fff; }
     .bnote  { margin-top: 1.25rem; font-size: .82rem; color: var(--muted); text-align: center; max-width: 700px; }
+    .bfree  { font-size: .72rem; color: var(--gold); font-weight: 600; letter-spacing: .05rem; margin-top: .3rem; }
 
     /* ── CTA ── */
-    .slide-cta { background: radial-gradient(ellipse at 30% 50%, #2a0a0a 0%, #0f0f1a 60%); text-align: center; }
+    .slide-cta {
+      text-align: center;
+      background-image: url('https://images.unsplash.com/photo-1698618988744-737573cb6a7a?auto=format&fit=crop&w=1920&q=80');
+    }
+    .slide-cta::before {
+      background: linear-gradient(180deg, rgba(10,10,26,0.78) 0%, rgba(5,15,10,0.88) 100%);
+    }
     .cta-flag  { font-size: 4rem; margin-bottom: 1.5rem; }
     .cta-title { font-family: 'Playfair Display', serif; font-size: 5.5rem; line-height: 1; margin-bottom: 1.5rem; }
     .cta-sub   { font-size: 1.15rem; color: var(--muted); margin-bottom: 2.5rem; max-width: 560px; }
@@ -186,81 +259,79 @@
       position: fixed; bottom: 4.5rem; right: 2.25rem;
       font-size: .72rem; color: rgba(240,235,224,.3);
     }
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .slide { padding: 28px 18px 56px; }
 
-    /* Cover */
-    .cover-kana  { font-size: 0.7rem; letter-spacing: .3rem; }
-    .cover-title { font-size: 3.8rem; }
-    .cover-sub   { font-size: 0.7rem; letter-spacing: .2rem; margin-bottom: 1.5rem; }
-    .cover-tag   { font-size: 0.72rem; padding: .5rem .9rem; gap: .5rem; flex-wrap: wrap; justify-content: center; }
-    .red-line    { margin: 1rem auto; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .slide { padding: 28px 18px 56px; }
 
-    /* Journey map — stack vertically */
-    .jmap        { flex-direction: column; gap: .4rem; margin-top: 1rem; }
-    .city        { padding: 0; display: flex; align-items: center; gap: 1rem; }
-    .city-circle { width: 54px; height: 54px; font-size: 1.4rem; margin: 0; flex-shrink: 0; }
-    .city-name   { font-size: 1rem; text-align: left; }
-    .city-days   { text-align: left; margin-top: .1rem; }
-    .jarrow      { transform: rotate(90deg); font-size: 1.2rem; align-self: center; padding: 0; }
+      /* Cover */
+      .cover-kana  { font-size: 0.7rem; letter-spacing: .3rem; }
+      .cover-title { font-size: 3.8rem; }
+      .cover-sub   { font-size: 0.7rem; letter-spacing: .2rem; margin-bottom: 1.5rem; }
+      .cover-tag   { font-size: 0.72rem; padding: .5rem .9rem; gap: .5rem; flex-wrap: wrap; justify-content: center; }
+      .red-line    { margin: 1rem auto; }
 
-    /* Stats */
-    .stats       { gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
-    .stat-num    { font-size: 2rem; }
-    .stat-lbl    { font-size: .65rem; }
+      /* Journey map — stack vertically */
+      .jmap        { flex-direction: column; gap: .4rem; margin-top: 1rem; }
+      .city        { padding: 0; display: flex; align-items: center; gap: 1rem; }
+      .city-circle { width: 54px; height: 54px; font-size: 1.4rem; margin: 0; flex-shrink: 0; }
+      .city-name   { font-size: 1rem; text-align: left; }
+      .city-days   { text-align: left; margin-top: .1rem; }
+      .jarrow      { transform: rotate(90deg); font-size: 1.2rem; align-self: center; padding: 0; }
 
-    /* Cards */
-    .cards-3, .cards-2 { grid-template-columns: 1fr; }
-    .cards       { gap: .65rem; }
-    .card        { padding: .85rem 1rem; }
-    .card-emoji  { font-size: 1.3rem; margin-bottom: .3rem; }
-    .card-title  { font-size: .85rem; }
-    .card-desc   { font-size: .76rem; line-height: 1.5; }
-    .card-day    { font-size: .62rem; }
+      /* Stats */
+      .stats       { gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
+      .stat-num    { font-size: 2rem; }
+      .stat-lbl    { font-size: .65rem; }
 
-    /* Content header */
-    .c-eyebrow   { font-size: .65rem; }
-    .c-title     { font-size: 1.7rem; }
-    .c-head      { margin-bottom: 1rem; }
+      /* Cards */
+      .cards-3, .cards-2 { grid-template-columns: 1fr; }
+      .cards       { gap: .65rem; }
+      .card        { padding: .85rem 1rem; }
+      .card-emoji  { font-size: 1.3rem; margin-bottom: .3rem; }
+      .card-title  { font-size: .85rem; }
+      .card-desc   { font-size: .76rem; line-height: 1.5; }
+      .card-day    { font-size: .62rem; }
 
-    /* Timeline — make scrollable on mobile */
-    #s3          { overflow-y: auto; justify-content: flex-start; padding-top: 28px; padding-bottom: 56px; }
-    .timeline    { gap: .42rem; }
-    .trow        { padding: .55rem .85rem; gap: .65rem; }
-    .tday        { font-size: .6rem; min-width: 38px; }
-    .tdot        { width: 7px; height: 7px; }
-    .ttitle      { font-size: .8rem; }
-    .tloc        { font-size: .68rem; }
-    .temoji      { font-size: 1.1rem; }
+      /* Content header */
+      .c-eyebrow   { font-size: .65rem; }
+      .c-title     { font-size: 1.7rem; }
+      .c-head      { margin-bottom: 1rem; }
 
-    /* Budget */
-    .bgrid       { grid-template-columns: 1fr; gap: .75rem; }
-    .bitem       { padding: .85rem 1.1rem; }
-    .blabel      { font-size: .8rem; }
-    .bvalue      { font-size: 1.05rem; }
-    .btotal .blabel { font-size: .85rem; }
-    .btotal .bvalue { font-size: 1.5rem; }
-    .bnote       { font-size: .75rem; margin-top: 1rem; }
+      /* Timeline — make scrollable on mobile */
+      #s3          { overflow-y: auto; justify-content: flex-start; padding-top: 28px; padding-bottom: 56px; }
+      .timeline    { gap: .42rem; }
+      .trow        { padding: .55rem .85rem; gap: .65rem; }
+      .tday        { font-size: .6rem; min-width: 38px; }
+      .tdot        { width: 7px; height: 7px; }
+      .ttitle      { font-size: .8rem; }
+      .tloc        { font-size: .68rem; }
+      .temoji      { font-size: 1.1rem; }
 
-    /* Section banner */
-    .sec-emoji   { font-size: 3rem; }
-    .sec-title   { font-size: 2.8rem; }
-    .sec-eyebrow { font-size: .7rem; }
+      /* Budget */
+      .bgrid       { grid-template-columns: 1fr; gap: .75rem; }
+      .bitem       { padding: .85rem 1.1rem; }
+      .blabel      { font-size: .8rem; }
+      .bvalue      { font-size: 1.05rem; }
+      .btotal .blabel { font-size: .85rem; }
+      .btotal .bvalue { font-size: 1.5rem; }
+      .bnote       { font-size: .75rem; margin-top: 1rem; }
 
-    /* CTA */
-    .cta-flag    { font-size: 2.8rem; margin-bottom: 1rem; }
-    .cta-title   { font-size: 3rem; margin-bottom: 1rem; }
-    .cta-sub     { font-size: .9rem; margin-bottom: 1.75rem; }
-    .cta-pill    { padding: .7rem 1.5rem; font-size: .85rem; }
+      /* Section banner */
+      .sec-emoji   { font-size: 3rem; }
+      .sec-title   { font-size: 2.8rem; }
+      .sec-eyebrow { font-size: .7rem; }
 
-    /* Deco */
-    .deco        { font-size: 10rem; right: -50px; opacity: .03; }
+      /* CTA */
+      .cta-flag    { font-size: 2.8rem; margin-bottom: 1rem; }
+      .cta-title   { font-size: 3rem; margin-bottom: 1rem; }
+      .cta-sub     { font-size: .9rem; margin-bottom: 1.75rem; }
+      .cta-pill    { padding: .7rem 1.5rem; font-size: .85rem; }
 
-    /* Nav */
-    .hint        { display: none; }
-    .counter     { font-size: .7rem; top: 1.25rem; right: 1.25rem; }
-  }
+      /* Nav */
+      .hint        { display: none; }
+      .counter     { font-size: .7rem; top: 1.25rem; right: 1.25rem; }
+    }
   </style>
 </head>
 <body>
@@ -270,8 +341,7 @@
   <!-- ────────────────────────────────────────────
        SLIDE 1 · COVER
   ──────────────────────────────────────────── -->
-  <div class="slide slide-cover active" id="s0">
-    <div class="deco">⛩️</div>
+  <div class="slide slide-cover slide-photo active" id="s0">
     <div class="cover-kana">日 本 · J A P A N · 2 0 2 7</div>
     <div class="cover-title">Japan<span>.</span></div>
     <div class="red-line"></div>
@@ -282,8 +352,7 @@
   <!-- ────────────────────────────────────────────
        SLIDE 2 · JOURNEY MAP
   ──────────────────────────────────────────── -->
-  <div class="slide slide-content" id="s1">
-    <div class="deco">🗾</div>
+  <div class="slide slide-content slide-photo slide-journey" id="s1">
     <div class="c-head">
       <div class="c-eyebrow">The Journey</div>
       <div class="c-title">9 Days. 3 Cities. One Epic Trip.</div>
@@ -324,7 +393,7 @@
   <!-- ────────────────────────────────────────────
        SLIDE 3 · WHY JAPAN
   ──────────────────────────────────────────── -->
-  <div class="slide slide-content" id="s2">
+  <div class="slide slide-content slide-photo slide-why" id="s2">
     <div class="c-head">
       <div class="c-eyebrow">Making the Case</div>
       <div class="c-title">Why Japan? Why Now?</div>
@@ -338,7 +407,7 @@
       <div class="card">
         <div class="card-emoji">👶</div>
         <div class="card-title">Perfect Age for Cora</div>
-        <div class="card-desc">She'll be almost 2 — old enough to experience the magic, young enough to fly as a lap infant for free.</div>
+        <div class="card-desc">She'll be almost 2 — old enough to experience the magic, young enough to fly as a lap infant for free. Under-6s ride all trains free too.</div>
       </div>
       <div class="card">
         <div class="card-emoji">🛡️</div>
@@ -366,7 +435,7 @@
   <!-- ────────────────────────────────────────────
        SLIDE 4 · FULL ITINERARY TIMELINE
   ──────────────────────────────────────────── -->
-  <div class="slide slide-content" id="s3" style="padding-top: 40px; padding-bottom: 40px; justify-content: flex-start; padding-top: 50px;">
+  <div class="slide slide-content" id="s3" style="justify-content: flex-start; padding-top: 50px; padding-bottom: 40px;">
     <div class="c-head" style="margin-bottom: 1.25rem;">
       <div class="c-eyebrow">Day by Day</div>
       <div class="c-title">The Full Itinerary</div>
@@ -423,8 +492,7 @@
   <!-- ────────────────────────────────────────────
        SLIDE 5 · TOKYO DEEP DIVE
   ──────────────────────────────────────────── -->
-  <div class="slide slide-content" id="s4">
-    <div class="deco">🗼</div>
+  <div class="slide slide-content slide-photo slide-tokyo" id="s4">
     <div class="c-head">
       <div class="c-eyebrow">Days 1 – 4</div>
       <div class="c-title">Tokyo</div>
@@ -460,8 +528,7 @@
   <!-- ────────────────────────────────────────────
        SLIDE 6 · KYOTO DEEP DIVE
   ──────────────────────────────────────────── -->
-  <div class="slide slide-content" id="s5">
-    <div class="deco">🏯</div>
+  <div class="slide slide-content slide-photo slide-kyoto" id="s5">
     <div class="c-head">
       <div class="c-eyebrow">Days 5 – 8</div>
       <div class="c-title">Kyoto — The Ancient Capital</div>
@@ -497,7 +564,7 @@
   <!-- ────────────────────────────────────────────
        SLIDE 7 · THE FOOD
   ──────────────────────────────────────────── -->
-  <div class="slide slide-content" id="s6">
+  <div class="slide slide-content slide-photo slide-food" id="s6">
     <div class="c-head">
       <div class="c-eyebrow">The Real Reason We're Going</div>
       <div class="c-title">The Food Is Unreal</div>
@@ -546,36 +613,44 @@
     </div>
     <div class="bgrid">
       <div class="bitem">
-        <span class="blabel">✈️ Flights (2 adults)</span>
+        <div>
+          <div class="blabel">✈️ Flights (2 adults)</div>
+          <div class="bfree">Cora flies free — lap infant</div>
+        </div>
         <span class="bvalue">$3,000 – $5,000</span>
       </div>
       <div class="bitem">
-        <span class="blabel">🏨 Hotels (8 nights)</span>
-        <span class="bvalue">TBD — Bonvoy pts</span>
+        <div>
+          <div class="blabel">🏨 Hotels (9 nights)</div>
+          <div class="bfree">Tokyo 4 · Kyoto 4 · Airport 1 — book early, peak season</div>
+        </div>
+        <span class="bvalue">$1,800 – $2,200</span>
       </div>
       <div class="bitem">
-        <span class="blabel">🚅 JR Pass + Transit</span>
-        <span class="bvalue">~$300</span>
+        <div>
+          <div class="blabel">🚅 Shinkansen + Transit</div>
+          <div class="bfree">Cora rides free — under 6</div>
+        </div>
+        <span class="bvalue">$600 – $800</span>
       </div>
       <div class="bitem">
         <span class="blabel">🍜 Food + Activities</span>
         <span class="bvalue">$2,500 – $3,500</span>
       </div>
       <div class="bitem btotal">
-        <span class="blabel">Total Estimated Trip Cost</span>
-        <span class="bvalue">$6,500 – $9,500</span>
+        <span class="blabel">Total Estimated Trip Cost (2 adults + baby)</span>
+        <span class="bvalue">$7,900 – $11,500</span>
       </div>
     </div>
     <div class="bnote">
-      Cora flies free as a lap infant. Checking Marriott Bonvoy points for Tokyo + Kyoto hotels — could significantly reduce the total. Watching for flights starting Oct–Nov 2026 (12 months out for best fares).
+      Checking Marriott Bonvoy points for Tokyo + Kyoto hotels — could reduce the total significantly. Watching flights starting Oct–Nov 2026. Hakone Free Pass (~$45/person) covers ropeway + Lake Ashi + all local transport.
     </div>
   </div>
 
   <!-- ────────────────────────────────────────────
        SLIDE 9 · CTA
   ──────────────────────────────────────────── -->
-  <div class="slide slide-cta" id="s8">
-    <div class="deco">⛩️</div>
+  <div class="slide slide-cta slide-photo" id="s8">
     <div class="cta-flag">🇯🇵</div>
     <div class="cta-title">Let's Do This.</div>
     <div class="red-line"></div>
