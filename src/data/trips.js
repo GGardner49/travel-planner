@@ -195,10 +195,10 @@ export const trips = [
     destination: "Tokyo + Hakone + Kyoto, Japan",
     accommodationName: "TBD — check Bonvoy hotels", accommodationAddress: "",
     accommodationType: "Hotel + Ryokans",
-    accomCost: "$1,800–$2,200", flights: "$3,000–$5,000", groundTransport: "$600–$800 (Shinkansen + Hakone pass + IC cards)",
-    foodActivEst: "$2,500–$3,500", totalEst: "$7,900–$11,500", expensed: "$0",
-    outOfPocket: "$7,900–$11,500", status: "PLAN",
-    notes: "Oct 2027 for fall foliage. Start watching flights Oct–Nov 2026 (12 months out). Hotels: Tokyo 4 nights (~$180–$280/night), Kyoto 4 nights (~$180–$320/night — peak foliage, book early), airport area 1 night. JR Pass may not be worth it — Nozomi (fastest Shinkansen) not covered. Consider buying individual Shinkansen tickets + Hakone Free Pass (~$45/person). Daughter under 6 rides free — no JR Pass needed for her. Check Bonvoy points for Tokyo/Kyoto properties.",
+    accomCost: "$1,800–$2,200 (incl. breakfast)", flights: "~$1,000 (Delta points)", groundTransport: "$600–$800 (Shinkansen + Hakone pass + IC cards)",
+    foodActivEst: "~$1,050 ($100/day × 9 + DisneySea ~$150)", totalEst: "~$4,450–$5,050", expensed: "$0",
+    outOfPocket: "~$4,450–$5,050", status: "PLAN",
+    notes: "Oct 2027 for fall foliage. Start watching flights Oct–Nov 2026 (12 months out). Flights on Delta points — budget ~$1,000 for upgrades/fees. Hotels: Tokyo 4 nights, Kyoto 4 nights, airport 1 night — choose hotels with free breakfast. Book early, peak foliage season. Hakone Free Pass (~$45/person) covers ropeway + Lake Ashi cruise + all local Hakone transport. DisneySea ~$70–75/person (Cora free under 3). Cora rides all trains free under 6 — no JR Pass needed for her. JR Pass likely not worth it — skip it, buy individual Shinkansen tickets. Check Bonvoy points for Tokyo/Kyoto properties.",
     itinerary: [
       {
         day: 1,
@@ -392,7 +392,7 @@ export const tripsByYear = {
 
 export const yearTotals = {
   2026: { label: "~$8,400–$8,900", notes: "Orlando + Indian Rocks Beach + Bristol ($50) + Winston-Salem (×2, $120) + Punta Cana ($2,085) + Maui. Work trips $0." },
-  2027: { label: "$10,000–$16,400", notes: "Pensacola + 2 short trips + Japan. Japan is the big variable ($7,900–$11,500)." },
+  2027: { label: "$6,500–$10,000", notes: "Pensacola + 2 short trips + Japan (~$4,500–$5,050 using Delta points + hotel breakfast)." },
   2028: { label: "$6,800–$11,800", notes: "2 short trips + BVI. Austria moved to 2029." },
   2029: { label: "$6,100–$10,400", notes: "2 short trips + Austria big trip." },
 };
