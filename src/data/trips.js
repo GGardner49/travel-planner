@@ -167,6 +167,18 @@ export const trips = [
     notes: "Feb 2027. Chris completes ASA 103+104 (has 101). Friends in Pensacola — confirm if staying with them. Need school that allows Gabbi + Cora to join at-sea portions. Research ASA sailing schools in Pensacola Bay area.",
   },
   {
+    id: "W2", year: 2027,
+    tripName: "Tampa — GST Conference", tripType: "Work-GST",
+    startDate: "May 1 2027", endDate: "May 6 2027", nights: "5",
+    destination: "Tampa, FL",
+    accommodationName: "Sail Port Condos", accommodationAddress: "2506 N Rocky Point Dr, Tampa, FL 33607",
+    accommodationType: "Condo — Rocky Point / Westshore (2BR)",
+    accomCost: "TBD (GST — possibly 1–2 nights OOP)", flights: "TBD (GST)", groundTransport: "$0 (GST)",
+    foodActivEst: "—", totalEst: "TBD", expensed: "GST",
+    outOfPocket: "TBD — possibly 1–2 nights", status: "BOOKED",
+    notes: "GST conference. Sail Port Condos — 2BR unit, same property as May 2026. Exact start date TBD (May 1 or 2). Condo already reserved, booking details TBD. Possibly 1–2 nights personal expense depending on final dates.",
+  },
+  {
     id: "10a", year: 2027,
     tripName: "Short Trip 1", tripType: "Personal",
     startDate: "TBD", endDate: "TBD", nights: "3–5",
