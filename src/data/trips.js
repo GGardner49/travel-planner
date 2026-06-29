@@ -162,9 +162,9 @@ export const trips = [
     accommodationName: "TBD — Friends or rental", accommodationAddress: "",
     accommodationType: "Friends/TBD",
     accomCost: "TBD (free if staying w/ friends)", flights: "$400–$600", groundTransport: "$0",
-    foodActivEst: "$600–$900", totalEst: "$1,400–$2,500", expensed: "$0",
-    outOfPocket: "$1,400–$2,500", status: "PLAN",
-    notes: "Feb 2027. Chris completes ASA 103+104 (has 101). Friends in Pensacola — confirm if staying with them. Need school that allows Gabbi + Cora to join at-sea portions. Research ASA sailing schools in Pensacola Bay area.",
+    foodActivEst: "$600–$900 (food) + $1,500 (ASA cert — Midbay Sailing)", totalEst: "$2,900–$4,000", expensed: "$0",
+    outOfPocket: "$2,900–$4,000", status: "PLAN",
+    notes: "Early 2027 (dates TBD). Chris completes ASA 103+104 (has 101) at Midbay Sailing (Niceville, FL — ~45 min east of Pensacola). Cert cost ~$1,500. Friends in Pensacola — confirm if staying with them. Need school that allows Gabbi + Cora to join at-sea portions.",
   },
   {
     id: "W2", year: 2027,
@@ -406,7 +406,7 @@ export const tripsByYear = {
 
 export const yearTotals = {
   2026: { label: "~$9,500–$9,800", notes: "Orlando + Indian Rocks Beach + Winston-Salem (×2, $120) + Punta Cana ($2,085) + Maui ($4,400–$4,600) + Germany Christmas Markets (~$1,400–$1,500). Work trips $0." },
-  2027: { label: "$6,500–$10,000", notes: "Pensacola + 2 short trips + Japan (~$4,500–$5,050 using Delta points + hotel breakfast)." },
+  2027: { label: "$8,000–$11,500", notes: "Pensacola sailing cert ($2,900–$4,000 incl. $1,500 Midbay cert) + 2 short trips + Japan (~$4,450–$5,050). Tampa GST $0 personal." },
   2028: { label: "$6,800–$11,800", notes: "2 short trips + BVI. Austria moved to 2029." },
   2029: { label: "$6,100–$10,400", notes: "2 short trips + Austria big trip." },
 };
