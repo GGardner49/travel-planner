@@ -151,6 +151,20 @@ export const trips = [
     notes: "~4.5 hr drive. Holiday visit to Gabbi's family. 4 nights Wed–Sun around Thanksgiving.",
   },
 
+  {
+    id: "10", year: 2026,
+    tripName: "Germany Christmas Markets", tripType: "Personal",
+    startDate: "Dec 8 2026", endDate: "Dec 13 2026", nights: "4",
+    destination: "Rüdesheim am Rhein, Germany",
+    accommodationName: "Hotel Rose", accommodationAddress: "Rüdesheim am Rhein, Germany",
+    accommodationType: "Hotel",
+    accomCost: "$1,000", flights: "$0 (points)", groundTransport: "~$60 (trains — Limburg + Frankfurt day trips)",
+    foodActivEst: "~$400–$500", totalEst: "~$1,400–$1,500", expensed: "$0",
+    outOfPocket: "~$1,400–$1,500", status: "BOOKED",
+    flightDetails: "Outbound: TYS→ATL→FRA, Dec 8 — depart 2:30pm, arrive Dec 9 7:50am (DL0724 + DL0014, Delta Comfort, seats 11B/11A). 1h 34m ATL layover.\n\nReturn: FRA→ATL→TYS, Dec 13 — depart 10:40am, arrive 8:40pm (DL0015 + DL5203, Delta Comfort, seats 33J/33H → 6D/6C). 4h 30m ATL layover.",
+    notes: "Hotel Rose, Rüdesheim am Rhein. Dec 9–13, 4 nights. Booking.com #5027236407. Crib confirmed for Cora (no extra charge). Rüdesheim Christmas Market is walking distance from hotel. Day trips by train: Limburg Christmas Market + Frankfurt Christmas Market.",
+  },
+
   // ── 2027 ──────────────────────────────────────────────────────────────────
   {
     id: "9b", year: 2027,
@@ -391,7 +405,7 @@ export const tripsByYear = {
 };
 
 export const yearTotals = {
-  2026: { label: "~$8,400–$8,900", notes: "Orlando + Indian Rocks Beach + Bristol ($50) + Winston-Salem (×2, $120) + Punta Cana ($2,085) + Maui. Work trips $0." },
+  2026: { label: "~$9,800–$10,400", notes: "Orlando + Indian Rocks Beach + Bristol ($50) + Winston-Salem (×2, $120) + Punta Cana ($2,085) + Maui + Germany Christmas Markets (~$1,400–$1,500). Work trips $0." },
   2027: { label: "$6,500–$10,000", notes: "Pensacola + 2 short trips + Japan (~$4,500–$5,050 using Delta points + hotel breakfast)." },
   2028: { label: "$6,800–$11,800", notes: "2 short trips + BVI. Austria moved to 2029." },
   2029: { label: "$6,100–$10,400", notes: "2 short trips + Austria big trip." },
