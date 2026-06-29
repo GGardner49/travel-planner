@@ -101,18 +101,6 @@ export const trips = [
     notes: "~4.5 hr drive from Rockwood TN. Staying with family. Jul 17–19.",
   },
   {
-    id: "6", year: 2026,
-    tripName: "Bristol / Johnson City", tripType: "Personal",
-    startDate: "Jul 4 2026", endDate: "Jul 5 2026", nights: "1",
-    destination: "Bristol / Johnson City, TN",
-    accommodationName: "Family", accommodationAddress: "",
-    accommodationType: "Family — Free",
-    accomCost: "$0 (family)", flights: "$0", groundTransport: "$50 (gas)",
-    foodActivEst: "$0", totalEst: "$50", expensed: "$0",
-    outOfPocket: "$50", status: "PLAN",
-    notes: "~2 hr drive from Lenoir City. Staying with family. July 4th weekend — probably.",
-  },
-  {
     id: "8", year: 2026,
     tripName: "Maui Fall", tripType: "Personal",
     startDate: "Oct 23 2026", endDate: "Nov 1 2026", nights: "9",
@@ -120,10 +108,10 @@ export const trips = [
     accommodationName: "Marriott Vacation Club Lahaina", accommodationAddress: "",
     accommodationType: "MVC — FIL Points",
     accomCost: "$0", flights: "$2,200", groundTransport: "$900 (car rental)",
-    foodActivEst: "$1,500–$2,000", totalEst: "$4,600–$5,100", expensed: "$0",
-    outOfPocket: "$4,600–$5,100", status: "BOOKED",
+    foodActivEst: "$1,300–$1,500 (groceries + 1 restaurant/day + luau ~$370 + coffee farm ~$280)", totalEst: "$4,400–$4,600", expensed: "$0",
+    outOfPocket: "$4,400–$4,600", status: "BOOKED",
     flightDetails: "Outbound: TYS→MSP→SEA, Oct 23 — depart 7:55am, arrive 12:30pm SEA (DL5523 + DL0889, First/Comfort+, upgrade cert waitlist). SEA→OGG, Oct 23 — depart 2:30pm, arrive 5:46pm (DL0344, nonstop, A321neo). ⚠️ Schedule change flag on TYS→MSP leg.\n\nReturn: OGG→SLC, Oct 31 — depart 9:12pm, arrive 6:13am Nov 1 (red-eye, nonstop, Comfort+, upgrade cert waitlist). SLC→MSP→TYS, Nov 1 — depart 8:00am, arrive 4:40pm (DL2916 + DL5335, First Class both legs, seats 3C/3D).",
-    notes: "FIL MVC points cover hotel. Rent car for the week. Budget generously — Hawaii is expensive.",
+    notes: "FIL MVC points cover hotel (MVC Lahaina). Rent car for the week. Unit has kitchen — plan to cook breakfast + lunch daily, go out for dinner. Activities: Royal Lahaina luau (~$185/person) + O'o Farm coffee tour in Upcountry (~$139/person, includes farm-to-table brunch, Cora free).",
   },
   {
     id: "8b", year: 2026,
@@ -405,7 +393,7 @@ export const tripsByYear = {
 };
 
 export const yearTotals = {
-  2026: { label: "~$9,800–$10,400", notes: "Orlando + Indian Rocks Beach + Bristol ($50) + Winston-Salem (×2, $120) + Punta Cana ($2,085) + Maui + Germany Christmas Markets (~$1,400–$1,500). Work trips $0." },
+  2026: { label: "~$9,500–$9,800", notes: "Orlando + Indian Rocks Beach + Winston-Salem (×2, $120) + Punta Cana ($2,085) + Maui ($4,400–$4,600) + Germany Christmas Markets (~$1,400–$1,500). Work trips $0." },
   2027: { label: "$6,500–$10,000", notes: "Pensacola + 2 short trips + Japan (~$4,500–$5,050 using Delta points + hotel breakfast)." },
   2028: { label: "$6,800–$11,800", notes: "2 short trips + BVI. Austria moved to 2029." },
   2029: { label: "$6,100–$10,400", notes: "2 short trips + Austria big trip." },
