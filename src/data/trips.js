@@ -151,6 +151,69 @@ export const trips = [
     outOfPocket: "~$1,400–$1,500", status: "BOOKED",
     flightDetails: "Outbound: TYS→ATL→FRA, Dec 8 — depart 2:30pm, arrive Dec 9 7:50am (DL0724 + DL0014, Delta Comfort, seats 11B/11A). 1h 34m ATL layover.\n\nReturn: FRA→ATL→TYS, Dec 13 — depart 10:40am, arrive 8:40pm (DL0015 + DL5203, Delta Comfort, seats 33J/33H → 6D/6C). 4h 30m ATL layover.",
     notes: "Hotel Rose, Rüdesheim am Rhein. Dec 9–13, 4 nights. Booking.com #5027236407. Crib confirmed for Cora (no extra charge). Rüdesheim Christmas Market is walking distance from hotel. Day trips by train: Limburg Christmas Market + Frankfurt Christmas Market.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrive & Rüdesheim",
+        location: "Frankfurt → Rüdesheim am Rhein",
+        items: [
+          { time: "Morning", desc: "Arrive Frankfurt (~8:00 AM) — train to Rüdesheim, check in at Hotel Rose" },
+          { time: "Midday", desc: "Lunch in Old Town" },
+          { time: "Afternoon", desc: "Explore Christmas Market of Nations" },
+          { time: "Evening", desc: "Walk Drosselgasse after dark — Rüdesheim's famous wine-tavern lane lit up for Christmas" },
+          { time: "Evening", desc: "Dinner in Rüdesheim" },
+        ],
+      },
+      {
+        day: 2,
+        title: "Frankfurt Day Trip",
+        location: "Frankfurt (train ~1 hr 20 min)",
+        items: [
+          { time: "Morning", desc: "Train to Frankfurt (~1 hr 20 min)" },
+          { time: "Morning", desc: "Römerberg Christmas Market — historic square, giant Christmas tree" },
+          { time: "Midday", desc: "Children's Christmas Market & carousel" },
+          { time: "Midday", desc: "Coffee & pastries" },
+          { time: "Afternoon", desc: "Main Tower observation deck — panoramic city views" },
+          { time: "Afternoon", desc: "Walk Eiserner Steg (Iron Bridge) over the Main River" },
+          { time: "Evening", desc: "Return to Rüdesheim" },
+        ],
+      },
+      {
+        day: 3,
+        title: "Limburg Day Trip",
+        location: "Limburg an der Lahn (train ~1 hr 30–45 min)",
+        items: [
+          { time: "Morning", desc: "Train to Limburg (~1 hr 30–45 min)" },
+          { time: "Morning", desc: "Wander medieval old town — one of the best-preserved in Germany" },
+          { time: "Morning", desc: "Limburg Cathedral (Dom) — stunning hilltop cathedral overlooking the Lahn River" },
+          { time: "Midday", desc: "Limburg Christmas market + café stop" },
+          { time: "Afternoon", desc: "German bakery — pick up something for the train ride home" },
+          { time: "Evening", desc: "Return to Rüdesheim" },
+        ],
+      },
+      {
+        day: 4,
+        title: "Relax in Rüdesheim",
+        location: "Rüdesheim am Rhein",
+        items: [
+          { time: "Morning", desc: "Sleep in — leisurely breakfast" },
+          { time: "Morning", desc: "🚠 Rüdesheim Gondola up to the Niederwald Monument — Rhine Valley views" },
+          { time: "Midday", desc: "Lunch overlooking the Rhine" },
+          { time: "Afternoon", desc: "🍷 Georg Breuer wine tasting — Rüdesheim's premier Riesling estate" },
+          { time: "Afternoon", desc: "Shopping: Cora's Christmas ornament + German children's book + bottle of Riesling" },
+          { time: "Evening", desc: "Final evening at Christmas Market of Nations" },
+        ],
+      },
+      {
+        day: 5,
+        title: "Fly Home",
+        location: "Rüdesheim → Frankfurt Airport",
+        items: [
+          { time: "Morning", desc: "Early train (or private transfer) to Frankfurt Airport" },
+          { time: "Morning", desc: "Depart FRA 10:40am — home by evening" },
+        ],
+      },
+    ],
   },
 
   // ── 2027 ──────────────────────────────────────────────────────────────────
