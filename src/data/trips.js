@@ -222,7 +222,7 @@ export const trips = [
   {
     id: "9b", year: 2027,
     tripName: "Pensacola — Beach + Sailing Cert", tripType: "Personal",
-    startDate: "Feb 2027", endDate: "TBD", nights: "7–9",
+    startDate: "Feb 2027", endDate: "TBD", nights: "6–7",
     destination: "Pensacola, FL",
     accommodationName: "TBD — Friends or rental", accommodationAddress: "",
     accommodationType: "Friends/TBD",
@@ -270,14 +270,14 @@ export const trips = [
   {
     id: "11", year: 2027,
     tripName: "Japan", tripType: "Personal",
-    startDate: "Oct 2027", endDate: "TBD", nights: "8",
+    startDate: "May / Oct / Nov 2027", endDate: "TBD", nights: "8",
     destination: "Tokyo + Hakone + Kyoto, Japan",
     accommodationName: "TBD — check Bonvoy hotels", accommodationAddress: "",
     accommodationType: "Hotel + Ryokans",
     accomCost: "$1,800–$2,200 (incl. breakfast)", flights: "~$1,000 (Delta points)", groundTransport: "$600–$800 (Shinkansen + Hakone pass + IC cards)",
     foodActivEst: "~$1,050 ($100/day × 9 + DisneySea ~$150)", totalEst: "~$4,450–$5,050", expensed: "$0",
     outOfPocket: "~$4,450–$5,050", status: "PLAN",
-    notes: "Oct 2027 for fall foliage. Start watching flights Oct–Nov 2026 (12 months out). Flights on Delta points — budget ~$1,000 for upgrades/fees. Hotels: Tokyo 4 nights, Kyoto 4 nights, airport 1 night — choose hotels with free breakfast. Book early, peak foliage season. Hakone Free Pass (~$45/person) covers ropeway + Lake Ashi cruise + all local Hakone transport. DisneySea ~$70–75/person (Cora free under 3). Cora rides all trains free under 6 — no JR Pass needed for her. JR Pass likely not worth it — skip it, buy individual Shinkansen tickets. Check Bonvoy points for Tokyo/Kyoto properties.",
+    notes: "Japan is happening; timing is still open. Compare mid-May with October or November before locking dates. Flights on Delta points — budget ~$1,000 for upgrades/fees. Hotels: Tokyo 4 nights, Kyoto 4 nights, airport 1 night — choose hotels with free breakfast. Cora rides all trains free under 6. Check Bonvoy points for Tokyo/Kyoto properties.",
     itinerary: [
       {
         day: 1,

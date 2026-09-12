@@ -109,10 +109,6 @@ export default function TripModal({ trip, onClose }) {
   const toggle = (key) => setOpen(prev => ({ ...prev, [key]: !prev[key] }));
 
   useEffect(() => {
-    setOpen({ accom: false, flights: false, budget: false, activities: false, itinerary: false });
-  }, [trip]);
-
-  useEffect(() => {
     if (trip) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = '';
     return () => { document.body.style.overflow = ''; };
