@@ -97,7 +97,7 @@ export const trips = [
     accommodationType: "Hotel/Family",
     accomCost: "$0 (family)", flights: "$0 (drive)", groundTransport: "$60 (gas)",
     foodActivEst: "$0", totalEst: "$60", expensed: "$0",
-    outOfPocket: "$60", status: "PLAN",
+    outOfPocket: "$60", status: "COMPLETE",
     notes: "~4.5 hr drive from Rockwood TN. Staying with family. Jul 17–19.",
   },
   {
@@ -105,13 +105,33 @@ export const trips = [
     tripName: "Maui Fall", tripType: "Personal",
     startDate: "Oct 23 2026", endDate: "Nov 1 2026", nights: "9",
     destination: "Lahaina, Maui, HI",
-    accommodationName: "Marriott Vacation Club Lahaina", accommodationAddress: "",
+    accommodationName: "Westin Kāʻanapali Ocean Resort Villas", accommodationAddress: "Kāʻanapali, Maui, HI",
     accommodationType: "MVC — FIL Points",
     accomCost: "$0", flights: "$2,200", groundTransport: "$900 (car rental)",
     foodActivEst: "$1,300–$1,500 (groceries + 1 restaurant/day + luau ~$370 + coffee farm ~$280)", totalEst: "$4,400–$4,600", expensed: "$0",
     outOfPocket: "$4,400–$4,600", status: "BOOKED",
     flightDetails: "Outbound: TYS→MSP→SEA, Oct 23 — depart 7:55am, arrive 12:30pm SEA (DL5523 + DL0889, First/Comfort+, upgrade cert waitlist). SEA→OGG, Oct 23 — depart 2:30pm, arrive 5:46pm (DL0344, nonstop, A321neo). ⚠️ Schedule change flag on TYS→MSP leg.\n\nReturn: OGG→SLC, Oct 31 — depart 9:12pm, arrive 6:13am Nov 1 (red-eye, nonstop, Comfort+, upgrade cert waitlist). SLC→MSP→TYS, Nov 1 — depart 8:00am, arrive 4:40pm (DL2916 + DL5335, First Class both legs, seats 3C/3D).",
-    notes: "FIL MVC points cover hotel (MVC Lahaina). Rent car for the week. Unit has kitchen — plan to cook breakfast + lunch daily, go out for dinner. Activities: Royal Lahaina luau (~$185/person) + O'o Farm coffee tour in Upcountry (~$139/person, includes farm-to-table brunch, Cora free).",
+    activities: [
+      { type: "restaurant", name: "Leilani's — Reserved", desc: "Saturday, Oct. 24" },
+      { type: "activity", name: "Lūʻau — Reserved", desc: "Monday, Oct. 26" },
+      { type: "activity", name: "ʻŌʻō Farm Tour + Lunch — Reserved", desc: "Wednesday, Oct. 28" },
+      { type: "restaurant", name: "Māla — Reserved", desc: "Thursday, Oct. 29" },
+    ],
+    itinerary: [
+      { day: 2, title: "Leilani's", location: "Sat Oct 24 · Reservation", items: [
+        { time: "Evening", desc: "Dinner reservation at Leilani's" },
+      ]},
+      { day: 4, title: "Lūʻau", location: "Mon Oct 26 · Reservation", items: [
+        { time: "Evening", desc: "Lūʻau reservation" },
+      ]},
+      { day: 6, title: "ʻŌʻō Farm", location: "Wed Oct 28 · Reservation", items: [
+        { time: "Midday", desc: "ʻŌʻō Farm tour and farm-to-table lunch" },
+      ]},
+      { day: 7, title: "Māla", location: "Thu Oct 29 · Reservation", items: [
+        { time: "Evening", desc: "Dinner reservation at Māla" },
+      ]},
+    ],
+    notes: "Westin Kāʻanapali Ocean Resort Villas is covered with Marriott Vacation Club points. Rent a car for the week. The villa has a kitchen, so plan to cook breakfast and lunch most days. These four reservations are the only currently confirmed dining/activity anchors; keep the rest of the trip relaxed and flexible.",
   },
   {
     id: "8b", year: 2026,
@@ -122,7 +142,7 @@ export const trips = [
     accommodationType: "All-Inclusive Resort — Master Swim-Up Suite",
     accomCost: "$2,085.25", flights: "$0 (points)", groundTransport: "$0 (airport transfer included)",
     foodActivEst: "$0 (all inclusive)", totalEst: "$2,085.25", expensed: "$0",
-    outOfPocket: "$2,085.25", status: "BOOKED",
+    outOfPocket: "$2,085.25", status: "COMPLETE",
     flightDetails: "Outbound: TYS→ATL→PUJ, Sep 2 — depart 8:35am, arrive 2:39pm (DL5279 + DL1916, Delta Comfort, seats 7D/7C). 1h 24m ATL layover.\n\nReturn: PUJ→ATL→TYS, Sep 7 — depart 4:04pm, arrive 11:52pm (DL1836 + DL3072, Delta Comfort/Main, seats 10B/10A). 3h 3m ATL layover.",
     notes: "Paradisus Grand Cana — All Suites. Master Swim-Up Suite, all inclusive. 5 nights Sep 2–7. Includes round-trip PUJ airport transfer, Fun Republic Night Experience, 50% golf discount, spa + F&B coupons. Traveling with another family (they have their own suite).",
   },
