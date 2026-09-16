@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 
 const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const destinations=['Japan','Québec City / Montréal','San Diego + Zoo','Ireland','Easy Caribbean resort','Pensacola','Nashville','Asheville','Avon','Chattanooga','Winston-Salem + Zoo','Athens','Amsterdam','Venice','Puerto Rico','Maine / Acadia'];
+const destinations=['Japan','Québec City / Montréal','San Diego + Zoo','Ireland','Easy Caribbean resort','Pensacola','Bay St. Louis · Logan + Ginny','Nashville','Asheville','Avon','Chattanooga','Winston-Salem + Zoo','Athens','Amsterdam','Venice','Puerto Rico','Maine / Acadia'];
 const buckets=['2027 priority','Watch for a deal','2028+','Not now'];
 const seedTrips=[
   {id:'tampa',title:'Tampa · GST',month:4,nights:5,type:'work',locked:true,status:'Confirmed',note:'May 1–6'},
@@ -12,7 +12,7 @@ const seedTrips=[
   {id:'japan',title:'Japan',month:null,nights:9,type:'anchor',status:'Priority',note:'Mid-May, October or November'},
   {id:'nc1',title:'NC family weekend 1',month:null,nights:2,type:'family',status:'Flexible',note:'Winston-Salem + purpose'},
   {id:'nc2',title:'NC family weekend 2',month:null,nights:2,type:'family',status:'Flexible',note:'Winston-Salem + purpose'},
-  {id:'reset1',title:'Quick reset 1',month:null,nights:3,type:'reset',status:'Flexible',note:'Asheville, Chattanooga or deal'},
+  {id:'reset1',title:'Quick reset 1',month:null,nights:3,type:'reset',status:'Flexible',note:'Bay St. Louis, Asheville, Chattanooga or deal'},
   {id:'reset2',title:'Quick reset 2',month:null,nights:3,type:'reset',status:'Flexible',note:'Keep movable'},
   {id:'birthday',title:"Cora's birthday trip",month:null,nights:7,type:'birthday',status:'Optional',note:'6–8 nights · Christmas season'},
   {id:'michigan',title:'Michigan · Precise',month:null,nights:3,type:'work',status:'Possible',note:'Dates unknown'},
@@ -22,7 +22,7 @@ const japanOptions=[
   {name:'October',month:9,weather:'Comfortable; some rain risk',crowds:'Moderate',effect:'Good spacing after summer'},
   {name:'November',month:10,weather:'Cooler and often dry',crowds:'Foliage areas busier',effect:'Closer to birthday/Christmas travel'},
 ];
-const initialPlan={version:2,japan:'',friends:'',sailing:'Undecided',nc:'Spring + Fall',cert1:'Unassigned',cert2:'Unassigned',destinations:Object.fromEntries(destinations.map((d,i)=>[d,i<6?'Watch for a deal':'2028+'])),deals:{Japan:'',Friends:'',Couples:''},calendar:seedTrips,scenario:''};
+const initialPlan={version:2,japan:'',friends:'',sailing:'Undecided',nc:'Spring + Fall',cert1:'Unassigned',cert2:'Unassigned',destinations:Object.fromEntries(destinations.map((d,i)=>[d,i<7?'Watch for a deal':'2028+'])),deals:{Japan:'',Friends:'',Couples:''},calendar:seedTrips,scenario:''};
 
 function Choice({value,onChange,options}){return <div className="choice-row">{options.map(o=><button key={o} className={value===o?'selected':''} onClick={()=>onChange(o)}>{o}</button>)}</div>}
 function Slide({kicker,title,children,wide=false}){return <section className={`content-slide ${wide?'wide-slide':''}`}><p className="eyebrow">{kicker}</p><h2>{title}</h2>{children}</section>}
