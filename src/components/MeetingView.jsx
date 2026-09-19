@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 
 const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const destinations=['Japan','Québec City / Montréal','San Diego + Zoo','Ireland','Easy Caribbean resort','Pensacola','Bay St. Louis · Logan + Ginny','Nashville','Asheville','Avon','Chattanooga','Winston-Salem + Zoo','Athens','Amsterdam','Venice','Puerto Rico','Maine / Acadia'];
+const destinations=['Japan','Québec City / Montréal','San Diego + Zoo','Ireland','Easy Caribbean resort','Pensacola','Bay St. Louis · Logan + Ginny','Cabo · in-laws','Nashville','Asheville','Avon','Chattanooga','Winston-Salem + Zoo','Athens','Amsterdam','Venice','Puerto Rico','Maine / Acadia'];
 const buckets=['2027 priority','Watch for a deal','2028+','Not now'];
 const companionUses=['Unassigned','Tampa','Bay St. Louis','Colorado / Avon','Work trip','Friends resort','San Diego'];
 const seedTrips=[
@@ -16,6 +16,7 @@ const seedTrips=[
   {id:'reset1',title:'Quick reset 1',month:null,nights:3,type:'reset',status:'Flexible',note:'Bay St. Louis, Asheville, Chattanooga or deal'},
   {id:'reset2',title:'Quick reset 2',month:null,nights:3,type:'reset',status:'Flexible',note:'Keep movable'},
   {id:'birthday',title:"Cora's birthday trip",month:null,nights:7,type:'birthday',status:'Optional',note:'6–8 nights · Christmas season'},
+  {id:'cabo',title:'Cabo with the in-laws',month:null,nights:0,type:'family',status:'Possible',note:'Low expected cost · timing and length open'},
   {id:'michigan',title:'Michigan · Precise',month:null,nights:3,type:'work',status:'Possible',note:'Dates unknown'},
 ];
 const japanOptions=[
@@ -23,7 +24,7 @@ const japanOptions=[
   {name:'October',month:9,weather:'Comfortable; some rain risk',crowds:'Moderate',effect:'Good spacing after summer'},
   {name:'November',month:10,weather:'Cooler and often dry',crowds:'Foliage areas busier',effect:'Closer to birthday/Christmas travel'},
 ];
-const initialPlan={version:2,japan:'',friends:'',sailing:'Undecided',nc:'Spring + Fall',cert1:'Unassigned',cert2:'Unassigned',destinations:Object.fromEntries(destinations.map((d,i)=>[d,i<7?'Watch for a deal':'2028+'])),deals:{Japan:'',Friends:'',Couples:''},calendar:seedTrips,scenario:''};
+const initialPlan={version:2,japan:'',friends:'',sailing:'Undecided',nc:'Spring + Fall',cert1:'Unassigned',cert2:'Unassigned',destinations:Object.fromEntries(destinations.map((d,i)=>[d,i<8?'Watch for a deal':'2028+'])),deals:{Japan:'',Friends:'',Couples:''},calendar:seedTrips,scenario:''};
 
 function Choice({value,onChange,options}){return <div className="choice-row">{options.map(o=><button key={o} className={value===o?'selected':''} onClick={()=>onChange(o)}>{o}</button>)}</div>}
 function Slide({kicker,title,children,wide=false}){return <section className={`content-slide ${wide?'wide-slide':''}`}><p className="eyebrow">{kicker}</p><h2>{title}</h2>{children}</section>}
@@ -31,7 +32,7 @@ function levelFor(trips){const nights=trips.reduce((n,t)=>n+t.nights,0);const wo
 
 export default function MeetingView(){
   const [section,setSection]=useState(0); const [selected,setSelected]=useState(null); const [dragged,setDragged]=useState(null);
-  const [plan,setPlan]=useState(()=>{try{const old=JSON.parse(localStorage.getItem('gardner2027meeting'));return {...initialPlan,...old,version:2,destinations:{...initialPlan.destinations,...old?.destinations},deals:{...initialPlan.deals,...old?.deals},calendar:old?.version===2&&old?.calendar?old.calendar:seedTrips}}catch{return initialPlan}});
+  const [plan,setPlan]=useState(()=>{try{const old=JSON.parse(localStorage.getItem('gardner2027meeting'));const saved=old?.version===2&&old?.calendar?old.calendar:seedTrips;const calendar=[...saved,...seedTrips.filter(seed=>!saved.some(t=>t.id===seed.id))];return {...initialPlan,...old,version:2,destinations:{...initialPlan.destinations,...old?.destinations},deals:{...initialPlan.deals,...old?.deals},calendar}}catch{return initialPlan}});
   useEffect(()=>localStorage.setItem('gardner2027meeting',JSON.stringify(plan)),[plan]);
   const set=(key,value)=>setPlan(p=>({...p,[key]:value}));
   const updateTrip=(id,changes)=>set('calendar',plan.calendar.map(t=>t.id===id?{...t,...changes}:t));
@@ -48,7 +49,7 @@ export default function MeetingView(){
   const calendarView=<div className="calendar-workshop">
     <div className="calendar-legend"><span><i className="work"/>Locked work</span><span><i className="anchor"/>Major trip</span><span><i className="family"/>Family / reset</span><strong>{totalNights} planned personal nights</strong></div>
     <div className="calendar-grid">{MONTHS.map((m,i)=>{const ts=plan.calendar.filter(t=>t.month===i);const level=levelFor(ts);return <div key={m} className={`calendar-month ${level.toLowerCase()}`} onDragOver={e=>e.preventDefault()} onDrop={()=>dragged&&moveTrip(dragged,i)}><header><b>{m}</b><span>{level}</span></header><div className="month-trips">{ts.map(t=><button draggable={!t.locked} onDragStart={()=>setDragged(t.id)} onClick={()=>setSelected(t.id)} className={`calendar-trip ${t.type}`} key={t.id}><strong>{t.title}</strong><small>{t.note}{t.locked?' · locked':''}</small></button>)}</div></div>})}</div>
-    <div className="trip-tray" onDragOver={e=>e.preventDefault()} onDrop={()=>dragged&&moveTrip(dragged,null)}><header><div><b>Unscheduled tray</b><span>Keep possibilities here until they earn calendar space.</span></div><em>{unscheduled.length} open</em></header><div>{unscheduled.map(t=><button draggable onDragStart={()=>setDragged(t.id)} onClick={()=>setSelected(t.id)} className={`calendar-trip ${t.type}`} key={t.id}><strong>{t.title}</strong><small>{t.nights} nights · {t.status}</small></button>)}</div></div>
+    <div className="trip-tray" onDragOver={e=>e.preventDefault()} onDrop={()=>dragged&&moveTrip(dragged,null)}><header><div><b>Unscheduled tray</b><span>Keep possibilities here until they earn calendar space.</span></div><em>{unscheduled.length} open</em></header><div>{unscheduled.map(t=><button draggable onDragStart={()=>setDragged(t.id)} onClick={()=>setSelected(t.id)} className={`calendar-trip ${t.type}`} key={t.id}><strong>{t.title}</strong><small>{t.nights?t.nights+' nights':'Length open'} · {t.status}</small></button>)}</div></div>
   </div>;
   const selectedTrip=plan.calendar.find(t=>t.id===selected);
   const slides=[
